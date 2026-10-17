@@ -1,4 +1,4 @@
-# Hướng dẫn deploy floristalisha.com lên Hostinger
+# Hướng dẫn deploy nancylemflorist.com lên Hostinger
 
 Áp dụng cho gói **Business / Cloud** có mục **Node.js** trong hPanel.
 
@@ -8,7 +8,7 @@ Trên máy bạn, thư mục `deploy/` (không đưa lên GitHub) có file `depl
 
 ## Bước 1: Tạo hộp thư email
 
-1. hPanel → **Emails** → thêm tên miền `floristalisha.com` (nếu chưa có) → tạo hộp thư `contact@floristalisha.com`.
+1. hPanel → **Emails** → thêm tên miền `nancylemflorist.com` (nếu chưa có) → tạo hộp thư `contact@nancylemflorist.com`.
 2. Ghi lại mật khẩu hộp thư, điền vào dòng `SMTP_PASS` trong `deploy/hostinger-env.txt`.
 
 ## Bước 2: Tạo thư mục lưu đơn hàng
@@ -16,13 +16,13 @@ Trên máy bạn, thư mục `deploy/` (không đưa lên GitHub) có file `depl
 Đơn hàng và yêu cầu liên hệ được lưu dưới dạng file JSON. Thư mục này phải nằm **ngoài** thư mục ứng dụng để không bị xóa khi deploy lại.
 
 1. hPanel → **Files → File Manager**. Xem đường dẫn thư mục home, ví dụ `/home/u123456789/`.
-2. Tạo thư mục `floristalisha-data` ngay trong home.
-3. Sửa dòng `DATA_DIR` trong `deploy/hostinger-env.txt`, thay `<user>` bằng tên user thật, ví dụ `DATA_DIR=/home/u123456789/floristalisha-data`.
+2. Tạo thư mục `nancylemflorist-data` ngay trong home.
+3. Sửa dòng `DATA_DIR` trong `deploy/hostinger-env.txt`, thay `<user>` bằng tên user thật, ví dụ `DATA_DIR=/home/u123456789/nancylemflorist-data`.
 
 ## Bước 3: Tạo ứng dụng Node.js từ GitHub
 
-1. hPanel → **Websites → Add website → Node.js Apps** (hoặc mở website floristalisha.com → **Node.js**).
-2. Chọn **Import Git repository**, đăng nhập GitHub khi được hỏi, chọn repo `thanhnhaclaude/nha-floristalisha`, nhánh `main`.
+1. hPanel → **Websites → Add website → Node.js Apps** (hoặc mở website nancylemflorist.com → **Node.js**).
+2. Chọn **Import Git repository**, đăng nhập GitHub khi được hỏi, chọn repo `thanhnhaclaude/nha-nancylemflorist`, nhánh `main`.
 3. Cấu hình:
    - **Node.js version:** 22.x (tối thiểu 20.9)
    - **Build command:** `npm run build`
@@ -35,7 +35,7 @@ Trong phần **Environment variables**, thêm **từng dòng** trong `deploy/hos
 
 | Biến | Ý nghĩa |
 |---|---|
-| `NEXT_PUBLIC_SITE_URL` | `https://floristalisha.com`. Được ghi vào lúc build, đổi giá trị thì phải **Deploy lại** |
+| `NEXT_PUBLIC_SITE_URL` | `https://nancylemflorist.com`. Được ghi vào lúc build, đổi giá trị thì phải **Deploy lại** |
 | `ADMIN_PASSWORD` | Mật khẩu đăng nhập trang `/admin` |
 | `AUTH_SECRET` | Khóa ký cookie đăng nhập (giữ bí mật) |
 | `DATA_DIR` | Thư mục lưu đơn hàng (Bước 2) |
@@ -45,21 +45,21 @@ Trong phần **Environment variables**, thêm **từng dòng** trong `deploy/hos
 ## Bước 5: Deploy và gắn tên miền
 
 1. Bấm **Deploy**. Lần đầu mất vài phút.
-2. Trỏ tên miền **floristalisha.com** (và `www`) về ứng dụng này, bật **SSL** (hPanel → **Security → SSL**).
+2. Trỏ tên miền **nancylemflorist.com** (và `www`) về ứng dụng này, bật **SSL** (hPanel → **Security → SSL**).
 
 ## Bước 6: Kiểm tra sau khi chạy
 
-- [ ] https://floristalisha.com/ hiển thị trang chủ có ảnh
-- [ ] https://floristalisha.com/api/health → `"status":"ok"`, và `DATA_DIR_writable`, `SMTP_configured`, `ADMIN_configured` đều là `true`
-- [ ] https://floristalisha.com/shop/midnight-garden → đặt thử một đơn
+- [ ] https://nancylemflorist.com/ hiển thị trang chủ có ảnh
+- [ ] https://nancylemflorist.com/api/health → `"status":"ok"`, và `DATA_DIR_writable`, `SMTP_configured`, `ADMIN_configured` đều là `true`
+- [ ] https://nancylemflorist.com/shop/midnight-garden → đặt thử một đơn
   - Hộp thư `SHOP_EMAIL` nhận email "New order…", email khách nhận "We received your order request…"
-- [ ] https://floristalisha.com/admin → đăng nhập bằng `ADMIN_PASSWORD`, thấy đơn vừa đặt, đổi trạng thái được
-- [ ] https://floristalisha.com/weddings-events → gửi thử form yêu cầu báo giá
-- [ ] https://floristalisha.com/sitemap.xml và /robots.txt hiển thị đúng
+- [ ] https://nancylemflorist.com/admin → đăng nhập bằng `ADMIN_PASSWORD`, thấy đơn vừa đặt, đổi trạng thái được
+- [ ] https://nancylemflorist.com/weddings-events → gửi thử form yêu cầu báo giá
+- [ ] https://nancylemflorist.com/sitemap.xml và /robots.txt hiển thị đúng
 
 ## Bước 7: Google
 
-1. Thêm **floristalisha.com** vào Google Search Console và gửi sitemap `https://floristalisha.com/sitemap.xml`.
+1. Thêm **nancylemflorist.com** vào Google Search Console và gửi sitemap `https://nancylemflorist.com/sitemap.xml`.
 2. Tạo Google Business Profile nếu muốn hiển thị trên Google Maps.
 
 ---

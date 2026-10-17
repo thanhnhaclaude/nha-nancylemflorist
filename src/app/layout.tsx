@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     url: site.url,
     title: `${site.name} — Bold Flowers, Delivered Nationwide`,
     description: site.description,
-    images: [{ url: "/images/hero-moody-bouquet.jpg", width: 1600, height: 2000, alt: "Florist Alisha signature bouquet" }],
+    images: [{ url: "/images/hero-moody-bouquet.jpg", width: 1600, height: 2000, alt: "NancyLem Florist signature bouquet" }],
   },
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },

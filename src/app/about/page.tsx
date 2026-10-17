@@ -7,7 +7,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Our Story",
-  description: "Florist Alisha is a modern flower studio sending bold, hand-tied bouquets across the United States. Meet the people and principles behind every stem.",
+  description: "NancyLem Florist is a modern flower studio sending bold, hand-tied bouquets across the United States. Meet the people and principles behind every stem.",
   alternates: { canonical: "/about" },
 };
 
@@ -23,13 +23,13 @@ export default function AboutPage() {
     <>
       <PageHero
         crumb="Our Story"
-        eyebrow="About Florist Alisha"
+        eyebrow="About NancyLem Florist"
         title={
           <>
             We believe flowers should <em className="text-poppy">make noise.</em>
           </>
         }
-        intro="Florist Alisha started with a simple frustration: too many flower deliveries arrive looking like they came off a conveyor belt. So we built the opposite — a studio where every bouquet is designed by hand, with color, scale and a little bit of nerve."
+        intro="NancyLem Florist started with a simple frustration: too many flower deliveries arrive looking like they came off a conveyor belt. So we built the opposite — a studio where every bouquet is designed by hand, with color, scale and a little bit of nerve."
       />
 
       <section className="container-x grid gap-12 py-20 md:py-28 lg:grid-cols-12 lg:items-center">

@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Delivery, Substitution & Refund Policy",
-  description: "Florist Alisha delivery areas, same-day cutoff, fees, substitutions, cancellations and refunds.",
+  description: "NancyLem Florist delivery areas, same-day cutoff, fees, substitutions, cancellations and refunds.",
   alternates: { canonical: "/delivery-policy" },
 };
 

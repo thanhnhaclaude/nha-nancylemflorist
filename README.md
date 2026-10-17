@@ -1,6 +1,6 @@
-# Florist Alisha — floristalisha.com
+# NancyLem Florist — nancylemflorist.com
 
-Marketing site and order-request system for **Florist Alisha**, a trade name of **NancyLem LLC** (Wyoming).
+Marketing site and order-request system for **NancyLem Florist**, a trade name of **NancyLem LLC** (Wyoming).
 
 - **Stack:** Next.js 16 (App Router) · React 19 · Tailwind CSS 4 · TypeScript · Zod · Nodemailer
 - **Storage:** JSON files in `DATA_DIR` (no database required)

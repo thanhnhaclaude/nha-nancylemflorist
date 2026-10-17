@@ -24,7 +24,7 @@ export default function Home() {
         <div className="container-x grid gap-10 pb-16 pt-8 md:pt-14 lg:grid-cols-12 lg:gap-8 lg:pb-24">
           <div className="flex flex-col justify-center lg:col-span-7 lg:pr-8">
             <p className="eyebrow rise text-ink-soft" style={{ ["--d" as string]: "0ms" }}>
-              Florist Alisha · Nationwide flower delivery
+              NancyLem Florist · Nationwide flower delivery
             </p>
             <h1 className="mt-6 text-[clamp(3.4rem,10.5vw,9.25rem)] font-medium leading-[0.88] tracking-[-0.045em]">
               <span className="rise block" style={{ ["--d" as string]: "80ms" }}>
@@ -277,7 +277,7 @@ export default function Home() {
       {/* PROMISES */}
       <section aria-labelledby="promise" className="container-x py-20 md:py-28">
         <h2 id="promise" className="max-w-3xl text-5xl font-medium md:text-6xl">
-          The Alisha <em>promise</em>
+          The NancyLem <em>promise</em>
         </h2>
         <ul className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {promises.map(({ icon: Icon, title, text }, i) => (

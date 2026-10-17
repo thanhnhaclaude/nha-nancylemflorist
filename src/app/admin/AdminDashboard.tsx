@@ -175,7 +175,7 @@ export default function AdminDashboard({
                   <div className="grid gap-6 border-t border-line p-5 text-sm md:grid-cols-3">
                     <Info title="Customer">
                       <p className="font-semibold">{o.senderName}</p>
-                      <a className="flex items-center gap-2 underline" href={`mailto:${o.senderEmail}?subject=${encodeURIComponent(`Your Florist Alisha order ${o.id}`)}`}>
+                      <a className="flex items-center gap-2 underline" href={`mailto:${o.senderEmail}?subject=${encodeURIComponent(`Your NancyLem Florist order ${o.id}`)}`}>
                         <Mail className="size-3.5" aria-hidden /> {o.senderEmail}
                       </a>
                       <a className="flex items-center gap-2 underline" href={`tel:${o.senderPhone}`}>

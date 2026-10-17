@@ -18,7 +18,7 @@ export async function POST(req: Request) {
   }
   const { company, ...data } = parsed.data;
   // Honeypot filled: pretend success so bots learn nothing.
-  if (company) return NextResponse.json({ id: newId("FA") });
+  if (company) return NextResponse.json({ id: newId("NF") });
 
   const product = getProduct(data.productSlug);
   if (!product) return NextResponse.json({ message: "That arrangement is no longer available." }, { status: 404 });
@@ -27,7 +27,7 @@ export async function POST(req: Request) {
   const record: OrderRecord = {
     ...data,
     size: product.singleSize ? "classic" : data.size,
-    id: newId("FA"),
+    id: newId("NF"),
     createdAt: new Date().toISOString(),
     status: "new",
     productName: product.name,

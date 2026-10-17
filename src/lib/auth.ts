@@ -2,7 +2,7 @@ import "server-only";
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
 
-export const SESSION_COOKIE = "fa_admin";
+export const SESSION_COOKIE = "nf_admin";
 const MAX_AGE = 60 * 60 * 12; // 12 hours
 
 function secret() {

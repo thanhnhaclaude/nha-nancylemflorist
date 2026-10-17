@@ -4,7 +4,7 @@ import { site, addressLine } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How Florist Alisha (NancyLem LLC) collects, uses and protects your personal information.",
+  description: "How NancyLem Florist (NancyLem LLC) collects, uses and protects your personal information.",
   alternates: { canonical: "/privacy-policy" },
 };
 

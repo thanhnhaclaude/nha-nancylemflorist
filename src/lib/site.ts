@@ -1,12 +1,12 @@
 export const site = {
-  name: "Florist Alisha",
-  shortName: "Alisha",
-  domain: "floristalisha.com",
-  url: (process.env.NEXT_PUBLIC_SITE_URL || "https://floristalisha.com").replace(/\/$/, ""),
+  name: "NancyLem Florist",
+  shortName: "NancyLem",
+  domain: "nancylemflorist.com",
+  url: (process.env.NEXT_PUBLIC_SITE_URL || "https://nancylemflorist.com").replace(/\/$/, ""),
   tagline: "Bold, hand-tied flowers delivered across the United States.",
   description:
-    "Florist Alisha designs bold, seasonal bouquets and event florals, hand-delivered across the United States. Same-day delivery in partner cities, wedding and corporate flowers, and a 7-day freshness promise.",
-  email: "contact@floristalisha.com",
+    "NancyLem Florist designs bold, seasonal bouquets and event florals, hand-delivered across the United States. Same-day delivery in partner cities, wedding and corporate flowers, and a 7-day freshness promise.",
+  email: "contact@nancylemflorist.com",
   phone: "(567) 333-1563",
   phoneHref: "+15673331563",
   contactPerson: "Nat Smith",

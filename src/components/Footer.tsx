@@ -78,7 +78,7 @@ export default function Footer() {
             © {year} {site.company.legalName}. {site.name} is a trade name of {site.company.legalName}, a{" "}
             {site.company.state} limited liability company (Filing ID {site.company.filingId}).
           </p>
-          <p className="shrink-0">floristalisha.com</p>
+          <p className="shrink-0">nancylemflorist.com</p>
         </div>
       </div>
     </footer>

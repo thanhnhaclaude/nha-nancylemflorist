@@ -7,7 +7,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Wedding, Event & Corporate Flowers",
   description:
-    "Custom wedding florals, event installations and weekly corporate flowers by Florist Alisha. Request a tailored proposal within two business days.",
+    "Custom wedding florals, event installations and weekly corporate flowers by NancyLem Florist. Request a tailored proposal within two business days.",
   alternates: { canonical: "/weddings-events" },
   openGraph: { images: ["/images/bridal-bouquet.jpg"] },
 };

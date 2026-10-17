@@ -5,7 +5,7 @@ import { products } from "@/lib/catalog";
 export const metadata: Metadata = {
   title: "Shop Flowers — Bouquets, Arrangements & Plants",
   description:
-    "Shop hand-tied bouquets, vased arrangements and plants from Florist Alisha. Same-day delivery in partner cities and next-day delivery nationwide.",
+    "Shop hand-tied bouquets, vased arrangements and plants from NancyLem Florist. Same-day delivery in partner cities and next-day delivery nationwide.",
   alternates: { canonical: "/shop" },
 };
 

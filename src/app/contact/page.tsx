@@ -6,7 +6,7 @@ import { site, addressLine } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact Us",
-  description: `Contact Florist Alisha by phone at ${site.phone} or email ${site.email}. We reply within one business day.`,
+  description: `Contact NancyLem Florist by phone at ${site.phone} or email ${site.email}. We reply within one business day.`,
   alternates: { canonical: "/contact" },
 };
 

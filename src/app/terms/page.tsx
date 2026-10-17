@@ -5,7 +5,7 @@ import { site, addressLine } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: "Terms governing use of floristalisha.com and orders placed with Florist Alisha (NancyLem LLC).",
+  description: "Terms governing use of nancylemflorist.com and orders placed with NancyLem Florist (NancyLem LLC).",
   alternates: { canonical: "/terms" },
 };
 

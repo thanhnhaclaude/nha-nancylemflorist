@@ -1,8 +1,8 @@
 {
-  "name": "floristalisha",
+  "name": "nancylemflorist",
   "version": "1.0.0",
   "private": true,
-  "description": "Florist Alisha — floristalisha.com (NancyLem LLC)",
+  "description": "NancyLem Florist — nancylemflorist.com (NancyLem LLC)",
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
