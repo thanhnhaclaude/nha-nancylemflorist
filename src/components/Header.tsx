@@ -37,8 +37,6 @@ export default function Header() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  if (pathname.startsWith("/admin")) return null;
-
   return (
     <>
       <div className="marquee overflow-hidden bg-ink py-2.5 text-paper" aria-label="Store announcements">

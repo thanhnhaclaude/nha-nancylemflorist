@@ -10,6 +10,10 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  experimental: {
+    // Inline the (small) Tailwind stylesheet into the HTML: no render-blocking CSS request.
+    inlineCss: true,
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 828, 1080, 1280, 1600],

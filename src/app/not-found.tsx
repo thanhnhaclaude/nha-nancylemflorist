@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import SiteChrome from "@/components/SiteChrome";
 
 export default function NotFound() {
   return (
+    <SiteChrome>
     <section className="container-x py-24 md:py-36">
       <p className="eyebrow text-poppy">Error 404</p>
       <h1 className="mt-4 text-[clamp(3.5rem,11vw,9rem)] font-medium leading-[0.88] tracking-[-0.045em]">
@@ -20,5 +22,6 @@ export default function NotFound() {
         </Link>
       </div>
     </section>
+    </SiteChrome>
   );
 }

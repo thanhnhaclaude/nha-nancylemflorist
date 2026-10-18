@@ -72,6 +72,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   );
   const remove = useCallback((index: number) => setLines((cur) => cur.filter((_, i) => i !== index)), []);
   const clear = useCallback(() => setLines([]), []);
+  const openDrawer = useCallback(() => setDrawerOpen(true), []);
+  const closeDrawer = useCallback(() => setDrawerOpen(false), []);
 
   const value = useMemo<CartContextValue>(() => {
     const totals = priceCart(lines);
@@ -85,10 +87,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       remove,
       clear,
       drawerOpen,
-      openDrawer: () => setDrawerOpen(true),
-      closeDrawer: () => setDrawerOpen(false),
+      openDrawer,
+      closeDrawer,
     };
-  }, [lines, ready, add, setQty, remove, clear, drawerOpen]);
+  }, [lines, ready, add, setQty, remove, clear, drawerOpen, openDrawer, closeDrawer]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }

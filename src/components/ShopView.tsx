@@ -40,7 +40,7 @@ export default function ShopView({
           </div>
           {collection && (
             <div className="relative hidden aspect-[5/4] overflow-hidden rounded-[1.75rem] lg:col-span-4 lg:col-start-9 lg:block">
-              <Image src={collection.image} alt="" fill priority sizes="33vw" className="object-cover" />
+              <Image src={collection.image} alt="" fill loading="eager" sizes="33vw" className="object-cover" />
             </div>
           )}
         </div>

@@ -1,15 +1,10 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Building2, Lock, Mail, MapPin, Phone } from "lucide-react";
 import Logo from "./Logo";
 import { site, addressFull } from "@/lib/site";
 import { collections } from "@/lib/catalog";
 
 export default function Footer() {
-  const pathname = usePathname();
-  if (pathname.startsWith("/admin")) return null;
   const year = new Date().getFullYear();
 
   return (

@@ -27,13 +27,13 @@ export default function Home() {
               NancyLem Florist · Nationwide flower delivery
             </p>
             <h1 className="mt-6 text-[clamp(3.4rem,10.5vw,9.25rem)] font-medium leading-[0.88] tracking-[-0.045em]">
-              <span className="rise block" style={{ ["--d" as string]: "80ms" }}>
+              <span className="block">
                 Bold flowers
               </span>
-              <span className="rise block" style={{ ["--d" as string]: "160ms" }}>
+              <span className="block">
                 for <em className="font-normal text-poppy">big</em>
               </span>
-              <span className="rise block" style={{ ["--d" as string]: "240ms" }}>
+              <span className="block">
                 feelings.
               </span>
             </h1>
@@ -69,7 +69,7 @@ export default function Home() {
                 src="/images/hero-moody-bouquet.jpg"
                 alt="The Midnight Garden — a dark, jewel-toned bouquet of protea, ranunculus and anemone"
                 fill
-                priority
+                loading="eager"
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover"
               />
@@ -123,7 +123,7 @@ export default function Home() {
       </section>
 
       {/* BESTSELLERS */}
-      <section aria-labelledby="bestsellers" className="container-x py-20 md:py-28">
+      <section aria-labelledby="bestsellers" className="cv-auto container-x py-20 md:py-28">
         <div className="grid gap-6 md:grid-cols-12 md:items-end">
           <div className="md:col-span-7">
             <p className="eyebrow text-poppy">Most sent this season</p>
@@ -150,7 +150,7 @@ export default function Home() {
       </section>
 
       {/* STATEMENT */}
-      <section aria-label="Our philosophy" className="overflow-hidden bg-ink py-24 text-paper md:py-36">
+      <section aria-label="Our philosophy" className="cv-auto overflow-hidden bg-ink py-24 text-paper md:py-36">
         <div className="container-x">
           <p data-reveal className="font-display text-[clamp(2.5rem,7.5vw,7.5rem)] font-medium leading-[1] tracking-[-0.035em]">
             Designed{" "}
@@ -163,7 +163,7 @@ export default function Home() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section aria-labelledby="how" className="container-x py-20 md:py-28">
+      <section aria-labelledby="how" className="cv-auto container-x py-20 md:py-28">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <p className="eyebrow text-poppy">How it works</p>
@@ -192,7 +192,7 @@ export default function Home() {
       </section>
 
       {/* SIGNATURE SPLIT */}
-      <section aria-labelledby="signature" className="bg-blush/45">
+      <section aria-labelledby="signature" className="cv-auto bg-blush/45">
         <div className="container-x grid items-center gap-12 py-20 md:py-28 lg:grid-cols-12">
           <div className="relative lg:col-span-6">
             <div data-reveal className="relative aspect-[4/5] overflow-hidden rounded-[2rem]">
@@ -241,7 +241,7 @@ export default function Home() {
       </section>
 
       {/* WEDDINGS */}
-      <section aria-labelledby="weddings" className="bg-moss text-paper">
+      <section aria-labelledby="weddings" className="cv-auto bg-moss text-paper">
         <div className="container-x grid gap-12 py-20 md:py-28 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-5">
             <p className="eyebrow text-moss-soft">Weddings · Events · Corporate</p>
@@ -275,7 +275,7 @@ export default function Home() {
       </section>
 
       {/* PROMISES */}
-      <section aria-labelledby="promise" className="container-x py-20 md:py-28">
+      <section aria-labelledby="promise" className="cv-auto container-x py-20 md:py-28">
         <h2 id="promise" className="max-w-3xl text-5xl font-medium md:text-6xl">
           The NancyLem <em>promise</em>
         </h2>
@@ -291,10 +291,10 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section aria-labelledby="cta" className="container-x pb-20 md:pb-28">
+      <section aria-labelledby="cta" className="cv-auto container-x pb-20 md:pb-28">
         <div className="relative overflow-hidden rounded-[2rem] bg-poppy px-6 py-16 text-white md:px-16 md:py-24">
           <Clock className="absolute -right-10 -top-10 size-72 text-white/10" aria-hidden strokeWidth={1} />
-          <p className="eyebrow text-white/80">Need it today?</p>
+          <p className="eyebrow text-white">Need it today?</p>
           <h2 id="cta" className="mt-4 max-w-4xl text-[clamp(2.75rem,7vw,6rem)] font-medium leading-[0.95]">
             Order by {site.sameDayCutoff}. <em>Smiles by sunset.</em>
           </h2>

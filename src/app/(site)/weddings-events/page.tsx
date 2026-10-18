@@ -66,7 +66,7 @@ export default function WeddingsEventsPage() {
           </div>
           <div className="grid grid-cols-2 gap-4 lg:col-span-5">
             <div className="relative col-span-2 aspect-[16/11] overflow-hidden rounded-[1.75rem]">
-              <Image src="/images/wedding-aisle.jpg" alt="Outdoor wedding ceremony aisle lined with roses" fill priority sizes="(min-width:1024px) 40vw, 100vw" className="object-cover" />
+              <Image src="/images/wedding-aisle.jpg" alt="Outdoor wedding ceremony aisle lined with roses" fill preload fetchPriority="high" sizes="(min-width:1024px) 40vw, 100vw" className="object-cover" />
             </div>
             <div className="relative aspect-square overflow-hidden rounded-[1.75rem]">
               <Image src="/images/bridal-bouquet.jpg" alt="Bridal bouquet held by a bride" fill sizes="20vw" className="object-cover" />

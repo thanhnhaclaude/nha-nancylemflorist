@@ -7,15 +7,16 @@
   --color-ink: #17120f;
   --color-ink-soft: #4a403a;
   --color-line: #d8ccbd;
-  --color-poppy: #d42a3a;
-  --color-poppy-dark: #a81d2b;
+  --color-poppy: #c8202f;
+  --color-poppy-dark: #9e1824;
   --color-blush: #f2c6cb;
   --color-moss: #22392c;
   --color-moss-soft: #c9d4c4;
   --color-success: #2d6a4f;
 
   --font-display: var(--font-playfair), "Times New Roman", serif;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  /* System UI font for body copy: zero font download on the critical path. */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -147,6 +148,16 @@
   to { opacity: 1; transform: none; }
 }
 .rise { animation: rise 1s var(--ease-out-expo) both; animation-delay: var(--d, 0ms); }
+
+/* Transform-only entrance: text is painted at full opacity from the first frame (keeps LCP fast). */
+@keyframes rise-y {
+  from { transform: translateY(0.35em); }
+  to { transform: none; }
+}
+.rise-y { animation: rise-y 0.9s var(--ease-out-expo) both; animation-delay: var(--d, 0ms); }
+
+/* Below-the-fold sections skip layout/paint until they near the viewport. */
+.cv-auto { content-visibility: auto; contain-intrinsic-size: auto 900px; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

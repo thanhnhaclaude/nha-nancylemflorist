@@ -74,7 +74,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <div className="lg:col-span-6">
           <div className="lg:sticky lg:top-28">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-paper-2">
-              <Image src={product.image} alt={product.imageAlt} fill priority sizes="(min-width: 1024px) 48vw, 100vw" className="object-cover" />
+              <Image src={product.image} alt={product.imageAlt} fill preload fetchPriority="high" sizes="(min-width: 1024px) 48vw, 100vw" className="object-cover" />
               {product.badge && (
                 <span className="eyebrow absolute left-4 top-4 rounded-full bg-paper px-3.5 py-2 text-[0.65rem]">{product.badge}</span>
               )}

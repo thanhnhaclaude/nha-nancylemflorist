@@ -29,7 +29,7 @@ function layout(title: string, body: string) {
   return `<!doctype html><html><body style="margin:0;background:#f4eee6;font-family:Helvetica,Arial,sans-serif;color:#17120f">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:32px 16px">
 <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#fbf8f4;border-radius:16px;overflow:hidden">
-<tr><td style="background:#17120f;color:#f4eee6;padding:24px 32px;font-family:Georgia,serif;font-size:26px;font-style:italic">NancyLem <span style="font-family:Helvetica,Arial,sans-serif;font-style:normal;font-size:11px;letter-spacing:3px">FLORIST<span style="color:#d42a3a">.</span></span></td></tr>
+<tr><td style="background:#17120f;color:#f4eee6;padding:24px 32px;font-family:Georgia,serif;font-size:26px;font-style:italic">NancyLem <span style="font-family:Helvetica,Arial,sans-serif;font-style:normal;font-size:11px;letter-spacing:3px">FLORIST<span style="color:#c8202f">.</span></span></td></tr>
 <tr><td style="padding:32px"><h1 style="font-family:Georgia,serif;font-weight:normal;font-size:28px;margin:0 0 16px">${title}</h1>${body}</td></tr>
 <tr><td style="padding:20px 32px;border-top:1px solid #d8ccbd;font-size:12px;color:#4a403a;line-height:1.6">
 ${site.name} · ${site.phone} · <a href="mailto:${site.email}" style="color:#4a403a">${site.email}</a><br>${site.company.legalName} · ${esc(addressLine)}

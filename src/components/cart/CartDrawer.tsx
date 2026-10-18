@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -13,8 +13,20 @@ export default function CartDrawer() {
   const { totals, drawerOpen, closeDrawer, setQty, remove } = useCart();
   const pathname = usePathname();
   const panelRef = useRef<HTMLDivElement>(null);
+  // Follows drawerOpen one frame later so the slide-in also animates on the very first open.
+  const [shown, setShown] = useState(false);
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setShown(drawerOpen));
+    return () => cancelAnimationFrame(id);
+  }, [drawerOpen]);
 
-  useEffect(() => closeDrawer(), [pathname]); // eslint-disable-line react-hooks/exhaustive-deps
+  const lastPath = useRef(pathname);
+  useEffect(() => {
+    if (lastPath.current !== pathname) {
+      lastPath.current = pathname;
+      closeDrawer();
+    }
+  }, [pathname, closeDrawer]);
 
   useEffect(() => {
     if (!drawerOpen) return;
@@ -33,9 +45,9 @@ export default function CartDrawer() {
   const toFree = FREE_DELIVERY_OVER - totals.subtotal;
 
   return (
-    <div className={`fixed inset-0 z-[60] ${drawerOpen ? "visible" : "invisible"}`} aria-hidden={!drawerOpen}>
+    <div className={`fixed inset-0 z-[60] ${drawerOpen ? "visible" : "invisible"}`} aria-hidden={!drawerOpen} inert={!drawerOpen}>
       <div
-        className={`absolute inset-0 bg-ink/50 transition-opacity duration-300 ${drawerOpen ? "opacity-100" : "opacity-0"}`}
+        className={`absolute inset-0 bg-ink/50 transition-opacity duration-300 ${shown ? "opacity-100" : "opacity-0"}`}
         onClick={closeDrawer}
       />
       <div
@@ -44,7 +56,7 @@ export default function CartDrawer() {
         aria-modal="true"
         aria-labelledby="cart-title"
         className={`absolute right-0 top-0 flex h-full w-full max-w-md flex-col bg-paper shadow-2xl transition-transform duration-500 ease-[var(--ease-out-expo)] ${
-          drawerOpen ? "translate-x-0" : "translate-x-full"
+          shown ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex items-center justify-between border-b border-line px-6 py-5">

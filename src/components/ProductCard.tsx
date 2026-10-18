@@ -21,7 +21,7 @@ export default function ProductCard({
           src={product.image}
           alt={product.imageAlt}
           fill
-          priority={priority}
+          loading={priority ? "eager" : "lazy"}
           sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 50vw"
           className="object-cover transition-transform duration-[1200ms] ease-[var(--ease-out-expo)] group-hover:scale-[1.05]"
         />
