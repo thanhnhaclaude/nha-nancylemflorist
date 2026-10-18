@@ -29,7 +29,7 @@ export default function AboutPage() {
             We believe flowers should <em className="text-poppy">make noise.</em>
           </>
         }
-        intro="NancyLem Florist is a flower shop owned and operated by NancyLem LLC. We started with a simple frustration: too many flower deliveries arrive looking like they came off a conveyor belt. So we built the opposite — a studio where every bouquet is designed by hand, with color, scale and a little bit of nerve."
+        intro="NancyLem Florist is the retail fresh-flower brand of NancyLem LLC. We started with a simple frustration: too many flower deliveries arrive looking like they came off a conveyor belt. So we built the opposite — a studio where every bouquet is designed by hand, with color, scale and a little bit of nerve."
       />
 
       <section className="container-x grid gap-12 py-20 md:py-28 lg:grid-cols-12 lg:items-center">
@@ -85,7 +85,8 @@ export default function AboutPage() {
               The company <em>behind the flowers</em>
             </h2>
             <p className="mt-6 text-ink-soft">
-              {site.name} and the website {site.domain} are owned and operated by {site.company.legalName}, a{" "}
+              {site.name} is a retail fresh-flower brand of {site.company.legalName}. The brand and the website{" "}
+              {site.domain} are owned and operated by {site.company.legalName}, a{" "}
               {site.company.type.toLowerCase()} registered with the {site.company.registeredWith}. All orders, payments
               and customer service are handled directly by {site.company.legalName}.
             </p>

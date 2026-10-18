@@ -42,14 +42,14 @@ export default function TermsPage() {
       <h2>4. Product appearance & substitutions</h2>
       <p>
         Photos are representative. Flowers are natural products; colors, sizes and varieties vary by season and
-        region. Substitutions are handled as described in our <Link href="/refund-policy">Refund & Return Policy</Link>.
+        region. Substitutions are handled as described in our <Link href="/return-policy">Return & Replacement Policy</Link>.
       </p>
 
       <h2>5. Delivery, cancellations & refunds</h2>
       <p>
         Delivery areas, timing and fees are governed by our <Link href="/shipping-policy">Shipping & Delivery Policy</Link>.
         Cancellations, replacements, refunds and our freshness guarantee are governed by our{" "}
-        <Link href="/refund-policy">Refund & Return Policy</Link>. Both are part of these terms.
+        <Link href="/return-policy">Return & Replacement Policy</Link>. Both are part of these terms.
       </p>
 
       <h2>6. Card messages & content</h2>

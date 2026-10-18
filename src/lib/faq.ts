@@ -52,7 +52,7 @@ export const faqs: { group: string; items: { q: string; a: string }[] }[] = [
       },
       {
         q: "What if my flowers arrive damaged or don't last?",
-        a: "Contact us within 48 hours of delivery with a photo and we'll send a fresh replacement or refund you. Fresh flowers are also guaranteed to last at least seven days with basic care. Full details are in our Refund & Return Policy.",
+        a: "Contact us within 24 hours of delivery with a photo and we'll send a fresh replacement or refund you. Fresh flowers are also guaranteed to last at least seven days with basic care. Full details are in our Return & Replacement Policy.",
       },
       {
         q: "Can I request specific flowers or colors?",

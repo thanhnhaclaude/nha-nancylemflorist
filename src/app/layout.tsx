@@ -52,7 +52,7 @@ const jsonLd = {
   name: site.name,
   legalName: site.company.legalName,
   url: site.url,
-  logo: `${site.url}/icon.svg`,
+  logo: `${site.url}/brand/nancylem-logo-square-light.png`,
   image: `${site.url}/images/hero-moody-bouquet.jpg`,
   description: site.description,
   email: site.email,

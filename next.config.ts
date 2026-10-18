@@ -36,8 +36,10 @@ const nextConfig: NextConfig = {
       { source: "/events", destination: "/weddings-events", permanent: true },
       { source: "/delivery-policy", destination: "/shipping-policy", permanent: true },
       { source: "/shipping", destination: "/shipping-policy", permanent: true },
-      { source: "/returns", destination: "/refund-policy", permanent: true },
-      { source: "/refunds", destination: "/refund-policy", permanent: true },
+      { source: "/refund-policy", destination: "/return-policy", permanent: true },
+      { source: "/returns", destination: "/return-policy", permanent: true },
+      { source: "/refunds", destination: "/return-policy", permanent: true },
+      { source: "/replacement-policy", destination: "/return-policy", permanent: true },
       { source: "/cart", destination: "/checkout", permanent: false },
     ];
   },

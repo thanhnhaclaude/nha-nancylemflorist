@@ -52,7 +52,7 @@ export default function Footer() {
 
           <FooterCol title="Policies" className="lg:col-span-3">
             <FooterLink href="/shipping-policy">Shipping & Delivery Policy</FooterLink>
-            <FooterLink href="/refund-policy">Refund & Return Policy</FooterLink>
+            <FooterLink href="/return-policy">Return & Replacement Policy</FooterLink>
             <FooterLink href="/privacy-policy">Privacy Policy</FooterLink>
             <FooterLink href="/terms">Terms of Service</FooterLink>
           </FooterCol>
@@ -71,7 +71,7 @@ export default function Footer() {
             </div>
             <div>
               <dt className="flex items-center gap-2 text-paper/55">
-                <MapPin className="size-4" aria-hidden /> Address
+                <MapPin className="size-4" aria-hidden /> Registered Address
               </dt>
               <dd className="mt-1 font-medium">
                 <address className="not-italic">{addressFull()}</address>
@@ -101,10 +101,21 @@ export default function Footer() {
         </section>
 
         <div className="mt-10 flex flex-col gap-4 border-t border-paper/15 pt-8 text-xs leading-relaxed text-paper/55 md:flex-row md:items-center md:justify-between">
-          <p>
-            © {year} {site.company.legalName}. All rights reserved. {site.name} is owned and operated by{" "}
-            {site.company.legalName}, a {site.company.state} limited liability company (Filing ID {site.company.filingId}).
-          </p>
+          <div className="space-y-1">
+            <p className="text-paper/75">
+              © {year} {site.name}. All rights reserved. Owned and operated by {site.company.legalName}.
+            </p>
+            <p>
+              Registered Address: {addressFull()}. Email:{" "}
+              <a href={`mailto:${site.email}`} className="underline underline-offset-2 hover:text-paper">
+                {site.email}
+              </a>
+              . Phone: {site.phone}.
+            </p>
+            <p>
+              {site.company.legalName} is a {site.company.state} limited liability company, Filing ID {site.company.filingId}.
+            </p>
+          </div>
           <p className="flex shrink-0 items-center gap-2">
             <Lock className="size-3.5" aria-hidden /> Secure checkout · SSL encrypted · Payments by Stripe
           </p>

@@ -104,7 +104,7 @@ export default function ShippingPolicyPage() {
       <h2>8. Problems with your delivery</h2>
       <p>
         If your flowers arrive late, damaged or different from what you ordered, please see our{" "}
-        <Link href="/refund-policy">Refund &amp; Return Policy</Link> — we will make it right.
+        <Link href="/return-policy">Return &amp; Replacement Policy</Link> — we will make it right.
       </p>
 
       <h2>Contact</h2>

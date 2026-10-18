@@ -4,26 +4,31 @@ import LegalPage from "@/components/LegalPage";
 import { site, addressFull } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Refund & Return Policy",
+  title: "Return & Replacement Policy",
   description:
     "Replacements and refunds for damaged, late or incorrect flower deliveries, our 7-day freshness guarantee, and cancellations. NancyLem Florist is operated by NancyLem LLC.",
-  alternates: { canonical: "/refund-policy" },
+  alternates: { canonical: "/return-policy" },
 };
 
-export default function RefundPolicyPage() {
+export default function ReturnPolicyPage() {
   return (
-    <LegalPage title="Refund & Return Policy" crumb="Refund & Return Policy">
+    <LegalPage title="Return & Replacement Policy" crumb="Return & Replacement Policy">
+      <p className="rounded-xl border border-line bg-card p-4 text-ink">
+        <strong>In short:</strong> fresh flowers can&rsquo;t be returned, but if your order arrives damaged, wilted or
+        incorrect, send us a photo within 24 hours of delivery and we&rsquo;ll replace it free of charge or refund you
+        in full.
+      </p>
       <p>
         At {site.name}, operated by {site.company.legalName}, we want every delivery to be right. Because flowers and
         plants are perishable, we cannot accept physical returns — but if something isn&rsquo;t right, we will replace
         your order or refund you as described below.
       </p>
 
-      <h2>1. Damaged, wilted or incorrect deliveries</h2>
+      <h2>1. Replacement for damaged, wilted or incorrect deliveries</h2>
       <p>If your order arrives damaged, crushed, wilted, or noticeably different from what you ordered:</p>
       <ul>
         <li>
-          Contact us within <strong>48 hours of delivery</strong> at <a href={`mailto:${site.email}`}>{site.email}</a>{" "}
+          Contact us within <strong>24 hours of delivery</strong> at <a href={`mailto:${site.email}`}>{site.email}</a>{" "}
           or {site.phone}, with your order number and a photo of the flowers as received.
         </li>
         <li>
@@ -81,7 +86,7 @@ export default function RefundPolicyPage() {
       <ul>
         <li>Delivery failed because of an incorrect address or phone number provided at checkout, or the recipient refused delivery.</li>
         <li>Flowers left as instructed (for example, at a front desk) and later mishandled by a third party.</li>
-        <li>Claims made more than 7 days after delivery (30 days for plants).</li>
+        <li>Damage reports made more than 24 hours after delivery, and freshness claims made more than 7 days after delivery (30 days for plants).</li>
       </ul>
 
       <h2>Contact us</h2>

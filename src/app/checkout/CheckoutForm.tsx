@@ -235,7 +235,7 @@ export default function CheckoutForm({ online }: { online: boolean }) {
               <span>
                 I agree to the <Link href="/terms" target="_blank" className="underline underline-offset-2">Terms of Service</Link>,{" "}
                 <Link href="/shipping-policy" target="_blank" className="underline underline-offset-2">Shipping & Delivery Policy</Link> and{" "}
-                <Link href="/refund-policy" target="_blank" className="underline underline-offset-2">Refund & Return Policy</Link>.
+                <Link href="/return-policy" target="_blank" className="underline underline-offset-2">Return & Replacement Policy</Link>.
               </span>
             </label>
             {err("agreeTerms") && (

@@ -21,7 +21,7 @@ export default function ContactPage() {
             Let&rsquo;s <em className="text-poppy">talk</em> flowers.
           </>
         }
-        intro="Questions about an order, a corporate account or something completely custom — a real florist will get back to you within one business day."
+        intro="NancyLem Florist is the retail fresh-flower brand of NancyLem LLC. Questions about an order, a corporate account or something completely custom — call, email or use the form below and a real florist will reply within one business day."
       />
       <section className="container-x grid gap-14 py-20 md:py-28 lg:grid-cols-12">
         <aside className="space-y-8 lg:col-span-4">
@@ -46,7 +46,7 @@ export default function ContactPage() {
             </ul>
             <p className="mt-2 text-xs text-ink-soft">{site.hoursNote}</p>
           </ContactItem>
-          <ContactItem icon={MapPin} label="Mailing address">
+          <ContactItem icon={MapPin} label="Registered address">
             <address className="not-italic">
               {site.company.legalName}
               <br />
@@ -56,7 +56,7 @@ export default function ContactPage() {
               <br />
               {site.company.address.country}
             </address>
-            <p className="mt-2 text-xs text-ink-soft">Administrative office — not a walk-in storefront.</p>
+            <p className="mt-2 text-xs text-ink-soft">Registered business office of {site.company.legalName}. Not a walk-in storefront — all orders are placed online or by phone.</p>
           </ContactItem>
         </aside>
         <div className="lg:col-span-7 lg:col-start-6">

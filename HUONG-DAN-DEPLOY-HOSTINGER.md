@@ -99,7 +99,7 @@ Các trạng thái khác: **awaiting_payment** (khách mở trang thanh toán nh
 | About Us | `/about` |
 | Contact Us (form + địa chỉ + điện thoại) | `/contact` |
 | Shipping & Delivery Policy | `/shipping-policy` |
-| Refund & Return Policy | `/refund-policy` |
+| Return & Replacement Policy (đổi mới / hoàn tiền) | `/return-policy` |
 | Terms of Service | `/terms` |
 | Privacy Policy | `/privacy-policy` |
 | Thông tin pháp nhân | Footer mọi trang: *Company Information* |
