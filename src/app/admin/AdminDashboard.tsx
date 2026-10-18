@@ -2,16 +2,18 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { AlertTriangle, LogOut, Mail, Phone, RefreshCw, Search } from "lucide-react";
+import { AlertTriangle, CreditCard, ExternalLink, LogOut, Mail, Phone, RefreshCw, Search } from "lucide-react";
 import Logo from "@/components/Logo";
 import { usd } from "@/lib/catalog";
 import type { InquiryRecord, OrderRecord } from "@/lib/store";
 
-const ORDER_STATUSES = ["new", "confirmed", "paid", "delivered", "cancelled"] as const;
+const ORDER_STATUSES = ["awaiting_payment", "paid", "new", "confirmed", "delivered", "cancelled", "refunded"] as const;
 const INQUIRY_STATUSES = ["new", "replied", "booked", "closed"] as const;
 
 const badge: Record<string, string> = {
   new: "bg-poppy text-white",
+  awaiting_payment: "bg-paper-2 text-ink-soft",
+  refunded: "bg-paper-2 text-ink-soft",
   confirmed: "bg-blush text-ink",
   paid: "bg-moss text-paper",
   delivered: "bg-moss-soft text-ink",
@@ -47,7 +49,7 @@ export default function AdminDashboard({
       orders.filter(
         (o) =>
           (statusFilter === "all" || o.status === statusFilter) &&
-          (!q || [o.id, o.senderName, o.senderEmail, o.recipientName, o.productName, o.city].join(" ").toLowerCase().includes(q)),
+          (!q || [o.id, o.senderName, o.senderEmail, o.recipientName, o.city, ...o.items.map((i) => i.name)].join(" ").toLowerCase().includes(q)),
       ),
     [orders, q, statusFilter],
   );
@@ -62,8 +64,10 @@ export default function AdminDashboard({
   );
 
   const stats = {
-    newOrders: orders.filter((o) => o.status === "new").length,
-    openValue: orders.filter((o) => ["new", "confirmed"].includes(o.status)).reduce((s, o) => s + o.total, 0),
+    newOrders: orders.filter((o) => o.status === "paid" || o.status === "new").length,
+    openValue: orders
+      .filter((o) => ["paid", "new", "confirmed", "delivered"].includes(o.status))
+      .reduce((s, o) => s + (o.amountPaid ?? o.total), 0),
     newInquiries: inquiries.filter((i) => i.status === "new").length,
   };
 
@@ -115,8 +119,8 @@ export default function AdminDashboard({
         )}
 
         <div className="grid gap-4 sm:grid-cols-3">
-          <Stat label="New orders" value={String(stats.newOrders)} />
-          <Stat label="Open order value" value={usd(stats.openValue)} />
+          <Stat label="To fulfill (paid / new)" value={String(stats.newOrders)} />
+          <Stat label="Order value (paid & active)" value={usd(stats.openValue)} />
           <Stat label="New inquiries" value={String(stats.newInquiries)} />
         </div>
 
@@ -164,9 +168,12 @@ export default function AdminDashboard({
               visibleOrders.map((o) => (
                 <details key={o.id} className="group rounded-2xl border border-line bg-card open:shadow-sm">
                   <summary className="flex flex-wrap items-center gap-x-6 gap-y-2 p-5 [&::-webkit-details-marker]:hidden">
-                    <span className={`eyebrow rounded-full px-2.5 py-1 text-[0.62rem] ${badge[o.status]}`}>{o.status}</span>
+                    <span className={`eyebrow rounded-full px-2.5 py-1 text-[0.62rem] ${badge[o.status]}`}>{o.status.replace("_", " ")}</span>
                     <span className="font-mono text-sm">{o.id}</span>
-                    <span className="font-semibold">{o.productName}</span>
+                    <span className="font-semibold">
+                      {o.items[0]?.name}
+                      {o.items.length > 1 && ` +${o.items.length - 1} more`}
+                    </span>
                     <span className="text-sm text-ink-soft">→ {o.recipientName}, {o.city} {o.state}</span>
                     <span className="text-sm">Deliver {o.deliveryDate}</span>
                     <span className="ml-auto font-semibold tabular-nums">{usd(o.total)}</span>
@@ -192,15 +199,42 @@ export default function AdminDashboard({
                       </p>
                       <p>Date: {o.deliveryDate}</p>
                     </Info>
-                    <Info title="Order">
-                      <p>
-                        {o.productName}
-                        {o.sizeLabel && ` · ${o.sizeLabel}`}
-                      </p>
-                      {o.addOnLabels.length > 0 && <p>Extras: {o.addOnLabels.join(", ")}</p>}
+                    <Info title="Items">
+                      <ul className="space-y-1">
+                        {o.items.map((i) => (
+                          <li key={`${i.slug}-${i.size}-${i.addOns.join()}`}>
+                            {i.qty} × {i.name}
+                            {i.sizeLabel && ` · ${i.sizeLabel}`}
+                            {i.addOnLabels.length > 0 && <span className="text-ink-soft"> + {i.addOnLabels.join(", ")}</span>}
+                            <span className="tabular-nums"> — {usd(i.lineTotal)}</span>
+                          </li>
+                        ))}
+                      </ul>
                       <p>
                         Subtotal {usd(o.subtotal)} · Delivery {o.delivery ? usd(o.delivery) : "free"} · <strong>{usd(o.total)}</strong>
                       </p>
+                    </Info>
+                    <Info title="Payment">
+                      <p className="flex items-center gap-2">
+                        <CreditCard className="size-3.5" aria-hidden />
+                        {o.payment === "stripe" ? "Stripe Checkout" : "Order request (pay later)"}
+                      </p>
+                      {o.amountPaid != null && (
+                        <p>
+                          Paid <strong>{usd(o.amountPaid)}</strong>
+                          {o.paidAt && ` · ${fmtDate(o.paidAt)}`}
+                        </p>
+                      )}
+                      {o.stripePaymentIntent && (
+                        <a
+                          className="flex items-center gap-1.5 underline"
+                          href={`https://dashboard.stripe.com/payments/${o.stripePaymentIntent}`}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          View in Stripe <ExternalLink className="size-3" aria-hidden />
+                        </a>
+                      )}
                     </Info>
                     {o.cardMessage && (
                       <Info title="Card message" className="md:col-span-2">

@@ -2,18 +2,20 @@
 
 Marketing site and order-request system for **NancyLem Florist**, a trade name of **NancyLem LLC** (Wyoming).
 
-- **Stack:** Next.js 16 (App Router) · React 19 · Tailwind CSS 4 · TypeScript · Zod · Nodemailer
+- **Stack:** Next.js 16 (App Router) · React 19 · Tailwind CSS 4 · TypeScript · Zod · Stripe Checkout · Nodemailer
 - **Storage:** JSON files in `DATA_DIR` (no database required)
 - **Hosting:** Hostinger Node.js Apps — see [HUONG-DAN-DEPLOY-HOSTINGER.md](HUONG-DAN-DEPLOY-HOSTINGER.md)
 
 ## Features
 
 - Editorial home page, shop, 6 collections, 22 product pages with JSON-LD
-- Order-request form: size, add-ons, delivery date, recipient, card message, live price estimate
+- Shopping cart (sizes, add-ons, quantities) with slide-out drawer, saved in the browser
+- Checkout with delivery details and card message, paid through **Stripe Checkout** (cards, Apple Pay, Google Pay); Stripe webhook marks orders paid/refunded
+- Falls back to "order request" mode when Stripe keys are not set
 - Wedding/event proposal form and contact form
 - Emails to the shop and the customer (Hostinger SMTP)
 - Password-protected `/admin` dashboard: search, filter, update status, internal notes
-- Delivery/refund policy, privacy policy, terms of service
+- Shipping & Delivery, Refund & Return, Privacy and Terms pages; company information block in the footer
 - SEO: metadata, Open Graph, sitemap, robots, `Florist`, `Product` and `FAQPage` structured data
 - Accessibility: skip link, visible focus, labelled fields, inline errors, reduced-motion support
 - Spam protection: honeypot field and per-IP rate limiting

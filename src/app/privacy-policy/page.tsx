@@ -24,8 +24,10 @@ export default function PrivacyPage() {
         <li><strong>Technical information:</strong> IP address and basic request logs used for security and spam prevention.</li>
       </ul>
       <p>
-        We do not collect payment card numbers on this website. Payments are processed by a third-party payment
-        provider through a secure link, under that provider&rsquo;s privacy policy.
+        We do not collect or store payment card numbers. Payments are processed by Stripe, Inc. on its secure,
+        PCI-DSS compliant payment page, under{" "}
+        <a href="https://stripe.com/privacy" target="_blank" rel="noreferrer">Stripe&rsquo;s privacy policy</a>. We
+        receive only the payment status, amount and the last four digits of the card.
       </p>
 
       <h2>How we use information</h2>
@@ -39,8 +41,10 @@ export default function PrivacyPage() {
 
       <h2>Cookies</h2>
       <p>
-        This website uses only cookies that are strictly necessary for it to work (for example, to keep our staff
-        signed in to the order dashboard). We do not use advertising or tracking cookies.
+        This website uses only storage that is strictly necessary for it to work: your browser&rsquo;s local storage
+        keeps the contents of your shopping cart, and a session cookie keeps our staff signed in to the order
+        dashboard. Stripe may set its own cookies on its payment page for fraud prevention. We do not use advertising
+        or tracking cookies.
       </p>
 
       <h2>Retention</h2>

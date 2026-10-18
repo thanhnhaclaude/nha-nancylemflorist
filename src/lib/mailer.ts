@@ -46,11 +46,17 @@ function rows(pairs: [string, string | undefined][]) {
     .join("")}</table>`;
 }
 
+function itemSummary(o: OrderRecord) {
+  return o.items
+    .map((i) => `${i.qty} × ${i.name}${i.sizeLabel ? ` (${i.sizeLabel})` : ""}${i.addOnLabels.length ? ` + ${i.addOnLabels.join(", ")}` : ""} — ${usd(i.lineTotal)}`)
+    .join("\n");
+}
+
 function orderRows(o: OrderRecord) {
+  const paid = o.status === "paid" || o.amountPaid;
   return rows([
     ["Order", o.id],
-    ["Arrangement", `${o.productName}${o.sizeLabel ? ` (${o.sizeLabel})` : ""}`],
-    ["Extras", o.addOnLabels.join(", ") || undefined],
+    ["Items", itemSummary(o)],
     ["Delivery date", o.deliveryDate],
     ["Recipient", `${o.recipientName}\n${o.recipientPhone}`],
     ["Address", `${o.address1}${o.address2 ? `, ${o.address2}` : ""}\n${o.city}, ${o.state} ${o.zip}\n(${o.locationType})`],
@@ -58,7 +64,7 @@ function orderRows(o: OrderRecord) {
     ["Notes", o.instructions || undefined],
     ["Subtotal", usd(o.subtotal)],
     ["Delivery", o.delivery ? usd(o.delivery) : "Free"],
-    ["Estimated total", `${usd(o.total)} + tax`],
+    [paid ? "Total paid" : "Estimated total", paid ? usd(o.amountPaid ?? o.total) : `${usd(o.total)} + tax`],
   ]);
 }
 
@@ -82,22 +88,29 @@ async function send(opts: { to: string; subject: string; html: string; replyTo?:
 const shopInbox = () => process.env.SHOP_EMAIL || site.email;
 
 export async function sendOrderEmails(o: OrderRecord) {
+  const paid = o.status === "paid";
+  const first = o.items[0]?.name ?? "Order";
+  const more = o.items.length > 1 ? ` +${o.items.length - 1}` : "";
   await Promise.all([
     send({
       to: shopInbox(),
       replyTo: o.senderEmail,
-      subject: `New order ${o.id} · ${o.productName} · ${o.deliveryDate}`,
+      subject: `${paid ? "PAID order" : "New order request"} ${o.id} · ${first}${more} · ${o.deliveryDate}`,
       html: layout(
-        `New order request`,
+        paid ? "New paid order" : "New order request",
         `${rows([["Customer", `${o.senderName}\n${o.senderEmail}\n${o.senderPhone}`]])}<hr style="border:0;border-top:1px solid #d8ccbd;margin:16px 0">${orderRows(o)}`,
       ),
     }),
     send({
       to: o.senderEmail,
-      subject: `We received your order request — ${o.id}`,
+      subject: paid ? `Order confirmed — ${o.id}` : `We received your order request — ${o.id}`,
       html: layout(
         `Thank you, ${esc(o.senderName.split(" ")[0])}.`,
-        `<p style="font-size:15px;line-height:1.6;margin:0 0 20px">A florist will review your order and contact you within business hours to confirm the details and send a secure payment link. <strong>Nothing has been charged yet.</strong></p>${orderRows(o)}<p style="font-size:14px;line-height:1.6;margin:20px 0 0">Questions? Reply to this email or call ${site.phone}.</p>`,
+        `<p style="font-size:15px;line-height:1.6;margin:0 0 20px">${
+          paid
+            ? "Your payment was successful and your order is confirmed. Our florists will design it on the delivery date and hand-deliver it with your card."
+            : "A florist will review your order and contact you within business hours to confirm the details and arrange payment. <strong>Nothing has been charged yet.</strong>"
+        }</p>${orderRows(o)}<p style="font-size:14px;line-height:1.6;margin:20px 0 0">Questions? Reply to this email or call ${site.phone}.</p>`,
       ),
     }),
   ]);

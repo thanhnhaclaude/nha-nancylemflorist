@@ -28,6 +28,11 @@ const nextConfig: NextConfig = {
       { source: "/shop/all", destination: "/shop", permanent: true },
       { source: "/weddings", destination: "/weddings-events", permanent: true },
       { source: "/events", destination: "/weddings-events", permanent: true },
+      { source: "/delivery-policy", destination: "/shipping-policy", permanent: true },
+      { source: "/shipping", destination: "/shipping-policy", permanent: true },
+      { source: "/returns", destination: "/refund-policy", permanent: true },
+      { source: "/refunds", destination: "/refund-policy", permanent: true },
+      { source: "/cart", destination: "/checkout", permanent: false },
     ];
   },
 };

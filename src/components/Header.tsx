@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X, Phone, ArrowUpRight } from "lucide-react";
 import Logo from "./Logo";
+import CartButton from "./cart/CartButton";
 import { nav, site } from "@/lib/site";
 
 const announcements = [
@@ -87,9 +88,10 @@ export default function Header() {
             >
               <Phone className="size-4" aria-hidden /> {site.phone}
             </a>
-            <Link href="/shop" className="btn btn-ink hidden !min-h-11 !px-5 sm:inline-flex">
+            <Link href="/shop" className="btn btn-ink hidden whitespace-nowrap !min-h-11 !px-5 xl:inline-flex">
               Send flowers <ArrowUpRight className="size-4" aria-hidden />
             </Link>
+            <CartButton />
             <button
               type="button"
               className="inline-flex size-11 items-center justify-center rounded-full border border-line lg:hidden"

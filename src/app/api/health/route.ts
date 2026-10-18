@@ -4,6 +4,7 @@ import path from "node:path";
 import { dataDir } from "@/lib/store";
 import { smtpConfigured } from "@/lib/mailer";
 import { adminConfigured } from "@/lib/auth";
+import { paymentsEnabled } from "@/lib/payments";
 
 export const dynamic = "force-dynamic";
 
@@ -24,6 +25,9 @@ export async function GET() {
       DATA_DIR_custom: Boolean(process.env.DATA_DIR),
       SMTP_configured: smtpConfigured(),
       ADMIN_configured: adminConfigured(),
+      STRIPE_configured: paymentsEnabled(),
+      STRIPE_live_mode: Boolean(process.env.STRIPE_SECRET_KEY?.startsWith("sk_live_")),
+      STRIPE_webhook_configured: Boolean(process.env.STRIPE_WEBHOOK_SECRET),
       SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || null,
     },
   });

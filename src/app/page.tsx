@@ -13,7 +13,7 @@ const promises = [
   { icon: Truck, title: "Hand-delivered", text: `Same-day in partner cities when you order by ${site.sameDayCutoff} recipient time. Nationwide next-day.` },
   { icon: Flower2, title: "7-day freshness", text: "If your flowers don't last a week with simple care, we'll replace them. No forms, no fuss." },
   { icon: PenLine, title: "Handwritten cards", text: "Every order includes a card written by hand — never a printed slip." },
-  { icon: ShieldCheck, title: "Real people", text: "A florist reviews every order and confirms with you before anything is charged." },
+  { icon: ShieldCheck, title: "Secure checkout", text: "Pay safely with card, Apple Pay or Google Pay through Stripe. We never see or store your card number." },
 ];
 
 export default function Home() {
@@ -171,14 +171,14 @@ export default function Home() {
               Three steps. <em>Zero</em> guesswork.
             </h2>
             <p className="mt-6 text-ink-soft">
-              We don&rsquo;t take your card at checkout. A florist confirms every detail first, then sends a secure
-              payment link — so what arrives is exactly what you meant.
+              Add your favorites to the cart, choose a delivery date and pay securely in under two minutes. A real
+              florist designs every order by hand on the day it&rsquo;s delivered.
             </p>
           </div>
           <ol className="grid gap-px overflow-hidden rounded-[1.5rem] border border-line bg-line sm:grid-cols-3 lg:col-span-8">
             {[
-              ["Choose", "Pick a bouquet, a size and a delivery date. Add a vase, chocolates or a candle."],
-              ["Confirm", "Within business hours a florist calls or emails to confirm and sends a secure payment link."],
+              ["Choose", "Pick a bouquet and a size. Add a vase, chocolates or a candle, then add it to your cart."],
+              ["Checkout", "Choose the delivery date, write your card message and pay securely with Stripe."],
               ["Delight", "We design it that morning and hand-deliver with your handwritten card."],
             ].map(([t, d], i) => (
               <li key={t} data-reveal style={{ ["--d" as string]: `${i * 100}ms` }} className="bg-paper p-8 md:p-10">

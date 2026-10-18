@@ -3,10 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import PageHero from "@/components/PageHero";
-import { site } from "@/lib/site";
+import { site, addressFull } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Our Story",
+  title: "About Us",
   description: "NancyLem Florist is a modern flower studio sending bold, hand-tied bouquets across the United States. Meet the people and principles behind every stem.",
   alternates: { canonical: "/about" },
 };
@@ -22,14 +22,14 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        crumb="Our Story"
+        crumb="About Us"
         eyebrow="About NancyLem Florist"
         title={
           <>
             We believe flowers should <em className="text-poppy">make noise.</em>
           </>
         }
-        intro="NancyLem Florist started with a simple frustration: too many flower deliveries arrive looking like they came off a conveyor belt. So we built the opposite — a studio where every bouquet is designed by hand, with color, scale and a little bit of nerve."
+        intro="NancyLem Florist is a flower shop owned and operated by NancyLem LLC. We started with a simple frustration: too many flower deliveries arrive looking like they came off a conveyor belt. So we built the opposite — a studio where every bouquet is designed by hand, with color, scale and a little bit of nerve."
       />
 
       <section className="container-x grid gap-12 py-20 md:py-28 lg:grid-cols-12 lg:items-center">
@@ -85,8 +85,9 @@ export default function AboutPage() {
               The company <em>behind the flowers</em>
             </h2>
             <p className="mt-6 text-ink-soft">
-              {site.name} is a trade name of {site.company.legalName}, a {site.company.type.toLowerCase()} registered
-              in the State of {site.company.state}.
+              {site.name} and the website {site.domain} are owned and operated by {site.company.legalName}, a{" "}
+              {site.company.type.toLowerCase()} registered with the {site.company.registeredWith}. All orders, payments
+              and customer service are handled directly by {site.company.legalName}.
             </p>
           </div>
           <dl className="grid gap-px overflow-hidden rounded-[1.5rem] border border-line bg-line text-sm sm:grid-cols-2 lg:col-span-7">
@@ -97,7 +98,7 @@ export default function AboutPage() {
               ["Filing ID", site.company.filingId],
               ["Formed", site.company.formed],
               ["Contact", site.contactPerson],
-              ["Address", `${site.company.address.street}, ${site.company.address.city}, ${site.company.address.region} ${site.company.address.postalCode}, ${site.company.address.country}`],
+              ["Address", addressFull()],
               ["Phone · Email", `${site.phone} · ${site.email}`],
             ].map(([k, v]) => (
               <div key={k} className="bg-card p-5">

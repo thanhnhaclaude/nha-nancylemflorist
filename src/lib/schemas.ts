@@ -22,10 +22,17 @@ export function latestDeliveryDate(now = new Date()) {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "America/Los_Angeles" }).format(d);
 }
 
-export const orderSchema = z.object({
-  productSlug: z.string().min(1),
+export const cartItemSchema = z.object({
+  slug: z.string().min(1).max(80),
   size: z.enum(sizes.map((s) => s.id) as [string, ...string[]]),
   addOns: z.array(z.enum(addOns.map((a) => a.id) as [string, ...string[]])).max(addOns.length).default([]),
+  qty: z.number().int().min(1).max(10),
+});
+
+export type CartItemInput = z.input<typeof cartItemSchema>;
+
+export const checkoutSchema = z.object({
+  items: z.array(cartItemSchema).min(1, "Your cart is empty").max(20, "Too many items in one order"),
   deliveryDate: z
     .string()
     .regex(/^\d{4}-\d{2}-\d{2}$/, "Choose a delivery date")
@@ -44,12 +51,13 @@ export const orderSchema = z.object({
   senderEmail: z.string().trim().email("Enter a valid email").max(120),
   senderPhone: phone,
   instructions: z.string().trim().max(500, "Keep it under 500 characters").optional().default(""),
+  agreeTerms: z.literal(true, { message: "Please accept the terms and policies" }),
   /** honeypot — must stay empty */
   company: z.string().max(0).optional().default(""),
 });
 
-export type OrderInput = z.input<typeof orderSchema>;
-export type OrderData = z.output<typeof orderSchema>;
+export type CheckoutInput = z.input<typeof checkoutSchema>;
+export type CheckoutData = z.output<typeof checkoutSchema>;
 
 export const inquirySchema = z.object({
   kind: z.enum(["event", "contact"]),

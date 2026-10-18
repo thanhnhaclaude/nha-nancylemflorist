@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Flower2, PenLine, Truck } from "lucide-react";
-import OrderForm from "@/components/OrderForm";
+import AddToCart from "@/components/cart/AddToCart";
 import ProductCard from "@/components/ProductCard";
 import { getCollection, getProduct, products, usd } from "@/lib/catalog";
 import { site } from "@/lib/site";
@@ -114,11 +114,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             from the photo while keeping the same look, value and feeling.
           </p>
 
-          <div className="mt-12 border-t border-ink pt-10">
-            <h2 className="mb-8 text-4xl font-medium">
-              Send <em>{product.name}</em>
-            </h2>
-            <OrderForm product={product} />
+          <div className="mt-10 border-t border-ink pt-10">
+            <AddToCart product={product} />
           </div>
         </div>
       </section>

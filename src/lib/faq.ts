@@ -5,12 +5,12 @@ export const faqs: { group: string; items: { q: string; a: string }[] }[] = [
     group: "Ordering & payment",
     items: [
       {
-        q: "Why don't you take payment at checkout?",
-        a: "Every order is reviewed by a florist before anything is charged. Within business hours we confirm the details by phone or email and send a secure payment link (all major cards, Apple Pay and Google Pay). Your order is scheduled as soon as payment is complete.",
+        q: "How do I pay?",
+        a: "Add your flowers to the cart and check out. Payment is processed securely by Stripe — we accept Visa, Mastercard, American Express, Discover, Apple Pay and Google Pay. We never see or store your full card number. You receive an email receipt as soon as payment is complete.",
       },
       {
-        q: "How quickly will you confirm my order?",
-        a: `Usually within 30–60 minutes during business hours (${site.hours[0].days}, ${site.hours[0].time} MT). Orders placed overnight are confirmed first thing the next morning.`,
+        q: "Will I get an order confirmation?",
+        a: `Yes. You receive an email confirmation with your order number and receipt right after payment. If anything about your order needs clarifying, a florist will contact you during business hours (${site.hours[0].days}, ${site.hours[0].time} MT).`,
       },
       {
         q: "Can I order for a future date?",
@@ -18,7 +18,7 @@ export const faqs: { group: string; items: { q: string; a: string }[] }[] = [
       },
       {
         q: "Do you charge sales tax?",
-        a: "Sales tax is calculated based on the delivery address and shown on your secure payment link before you pay.",
+        a: "Where applicable, sales tax is calculated from the delivery address and shown on the secure payment page before you pay.",
       },
     ],
   },
@@ -35,7 +35,7 @@ export const faqs: { group: string; items: { q: string; a: string }[] }[] = [
       },
       {
         q: "How much is delivery?",
-        a: "Delivery is $15.99 per address and free on orders of $150 or more (before tax).",
+        a: "Delivery is $15.99 per order and free on orders of $150 or more (before tax). See our Shipping & Delivery Policy for details.",
       },
       {
         q: "What if the recipient isn't home?",
@@ -51,8 +51,8 @@ export const faqs: { group: string; items: { q: string; a: string }[] }[] = [
         a: "It will have the same style, palette and value. Because we design with what's freshest that day, individual stems may vary slightly. If a key flower is unavailable we'll substitute something of equal or greater value and let you know.",
       },
       {
-        q: "What is your 7-day freshness promise?",
-        a: "Trim the stems, change the water every two days and keep flowers away from heat and fruit. If they don't last at least seven days, send us a photo within that week and we'll replace them or issue a credit.",
+        q: "What if my flowers arrive damaged or don't last?",
+        a: "Contact us within 48 hours of delivery with a photo and we'll send a fresh replacement or refund you. Fresh flowers are also guaranteed to last at least seven days with basic care. Full details are in our Refund & Return Policy.",
       },
       {
         q: "Can I request specific flowers or colors?",

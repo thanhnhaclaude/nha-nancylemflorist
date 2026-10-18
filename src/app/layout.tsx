@@ -5,6 +5,8 @@ import { site } from "@/lib/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
+import { CartProvider } from "@/components/cart/CartProvider";
+import CartDrawer from "@/components/cart/CartDrawer";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -86,9 +88,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
+        <CartProvider>
+          <Header />
+          <main id="main">{children}</main>
+          <Footer />
+          <CartDrawer />
+        </CartProvider>
         <Reveal />
       </body>
     </html>

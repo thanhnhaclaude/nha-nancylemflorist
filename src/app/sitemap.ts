@@ -19,7 +19,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/about", 0.5, "monthly"),
     page("/faq", 0.5, "monthly"),
     page("/contact", 0.5, "monthly"),
-    page("/delivery-policy", 0.3, "yearly"),
+    page("/shipping-policy", 0.3, "yearly"),
+    page("/refund-policy", 0.3, "yearly"),
     page("/privacy-policy", 0.2, "yearly"),
     page("/terms", 0.2, "yearly"),
   ];

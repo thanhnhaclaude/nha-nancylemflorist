@@ -1,6 +1,6 @@
 import PageHero from "./PageHero";
 
-export const LEGAL_UPDATED = "October 17, 2026";
+export const LEGAL_UPDATED = "October 18, 2026";
 
 export default function LegalPage({ title, crumb, children }: { title: string; crumb: string; children: React.ReactNode }) {
   return (

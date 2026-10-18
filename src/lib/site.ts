@@ -35,6 +35,10 @@ export const site = {
   },
 } as const;
 
+/** Full mailing address including country, as shown in legal notices. */
+export const addressFull = () =>
+  `${site.company.address.street}, ${site.company.address.city}, ${site.company.address.region} ${site.company.address.postalCode}, USA`;
+
 export const addressLine = `${site.company.address.street}, ${site.company.address.city}, ${site.company.address.region} ${site.company.address.postalCode}`;
 
 export const nav = [
@@ -43,7 +47,7 @@ export const nav = [
   { href: "/collections/birthday", label: "Birthday" },
   { href: "/collections/sympathy", label: "Sympathy" },
   { href: "/weddings-events", label: "Weddings & Events" },
-  { href: "/about", label: "Our Story" },
+  { href: "/about", label: "About Us" },
 ] as const;
 
 export const US_STATES = [

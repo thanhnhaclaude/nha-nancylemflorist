@@ -406,5 +406,31 @@ export function quote(product: Product, sizeId: SizeId, addOnIds: AddOnId[]) {
   return { size, item, extras, subtotal, delivery, total: Math.round((subtotal + delivery) * 100) / 100 };
 }
 
+export type CartLine = { slug: string; size: string; addOns: string[]; qty: number };
+
+/** Price a whole cart from the catalog. Unknown products are dropped. */
+export function priceCart(lines: CartLine[]) {
+  const items = lines.flatMap((line) => {
+    const product = getProduct(line.slug);
+    if (!product) return [];
+    const q = quote(product, line.size as SizeId, line.addOns as AddOnId[]);
+    const unit = q.item + q.extras;
+    return [
+      {
+        ...line,
+        product,
+        size: product.singleSize ? "classic" : q.size.id,
+        sizeLabel: product.singleSize ? "" : q.size.label,
+        addOnLabels: addOns.filter((a) => line.addOns.includes(a.id)).map((a) => a.label),
+        unit,
+        lineTotal: unit * line.qty,
+      },
+    ];
+  });
+  const subtotal = items.reduce((s, i) => s + i.lineTotal, 0);
+  const delivery = subtotal === 0 || subtotal >= FREE_DELIVERY_OVER ? 0 : DELIVERY_FEE;
+  return { items, subtotal, delivery, total: Math.round((subtotal + delivery) * 100) / 100 };
+}
+
 export const usd = (n: number) =>
   new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: n % 1 ? 2 : 0 }).format(n);

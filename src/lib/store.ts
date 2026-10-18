@@ -2,23 +2,43 @@ import "server-only";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { randomBytes } from "node:crypto";
-import type { InquiryData, OrderData } from "./schemas";
+import type { CheckoutData, InquiryData } from "./schemas";
 
-export const ORDER_STATUSES = ["new", "confirmed", "paid", "delivered", "cancelled"] as const;
+/**
+ * awaiting_payment: sent to Stripe, not paid yet · paid: Stripe confirmed payment ·
+ * new: request placed without online payment (Stripe not configured)
+ */
+export const ORDER_STATUSES = ["awaiting_payment", "paid", "new", "confirmed", "delivered", "cancelled", "refunded"] as const;
 export type OrderStatus = (typeof ORDER_STATUSES)[number];
 export const INQUIRY_STATUSES = ["new", "replied", "booked", "closed"] as const;
 export type InquiryStatus = (typeof INQUIRY_STATUSES)[number];
 
-export type OrderRecord = Omit<OrderData, "company"> & {
+export type OrderItem = {
+  slug: string;
+  name: string;
+  size: string;
+  sizeLabel: string;
+  addOns: string[];
+  addOnLabels: string[];
+  qty: number;
+  unit: number;
+  lineTotal: number;
+};
+
+export type OrderRecord = Omit<CheckoutData, "company" | "items" | "agreeTerms"> & {
   id: string;
   createdAt: string;
   status: OrderStatus;
-  productName: string;
-  sizeLabel: string;
-  addOnLabels: string[];
+  items: OrderItem[];
   subtotal: number;
   delivery: number;
   total: number;
+  payment: "stripe" | "request";
+  stripeSessionId?: string;
+  stripePaymentIntent?: string;
+  amountPaid?: number;
+  paidAt?: string;
+  emailedAt?: string;
   ip?: string;
   adminNote?: string;
 };
@@ -80,6 +100,25 @@ export function insert<K extends Kind>(kind: K, record: RecordOf<K>) {
     list.unshift(record);
     await writeAll(kind, list);
     return record;
+  });
+}
+
+export async function findById<K extends Kind>(kind: K, id: string) {
+  return (await readAll(kind)).find((r) => r.id === id) ?? null;
+}
+
+/** Atomically read-modify-write one record. Return null from fn to leave it unchanged. */
+export function mutate<K extends Kind>(kind: K, id: string, fn: (rec: RecordOf<K>) => RecordOf<K> | null) {
+  return serialize(kind, async () => {
+    const list = await readAll(kind);
+    const i = list.findIndex((r) => r.id === id);
+    if (i === -1) return { before: null, after: null };
+    const before = list[i];
+    const next = fn(before);
+    if (!next) return { before, after: before, changed: false };
+    list[i] = next;
+    await writeAll(kind, list);
+    return { before, after: next, changed: true };
   });
 }
 

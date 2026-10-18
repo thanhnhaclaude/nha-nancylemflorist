@@ -19,6 +19,21 @@ Trên máy bạn, thư mục `deploy/` (không đưa lên GitHub) có file `depl
 2. Tạo thư mục `nancylemflorist-data` ngay trong home.
 3. Sửa dòng `DATA_DIR` trong `deploy/hostinger-env.txt`, thay `<user>` bằng tên user thật, ví dụ `DATA_DIR=/home/u123456789/nancylemflorist-data`.
 
+## Bước 2b: Tạo tài khoản Stripe (cổng thanh toán)
+
+1. Đăng ký tại https://dashboard.stripe.com/register bằng thông tin **NancyLem LLC** (Business type: *LLC*, EIN, địa chỉ Sheridan WY, website `https://nancylemflorist.com`, mô tả: *Online florist – fresh flower delivery*). Hoàn tất xác minh để nhận tiền.
+2. **Developers → API keys** → copy **Secret key** (`sk_live_...`) vào dòng `STRIPE_SECRET_KEY`.
+3. **Developers → Webhooks → Add endpoint**:
+   - URL: `https://nancylemflorist.com/api/stripe/webhook`
+   - Sự kiện: `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `checkout.session.expired`, `charge.refunded`
+   - Copy **Signing secret** (`whsec_...`) vào dòng `STRIPE_WEBHOOK_SECRET`.
+4. (Tùy chọn) Bật **Stripe Tax** nếu cần thu thuế bán hàng, rồi đặt `STRIPE_AUTOMATIC_TAX=true`.
+5. **Settings → Public details**: tên hiển thị *NancyLem Florist*, statement descriptor `NANCYLEM FLORIST`, email `contact@nancylemflorist.com`, số điện thoại hỗ trợ.
+
+> Muốn thử trước bằng tiền ảo: dùng khóa `sk_test_...` và webhook ở chế độ Test, đặt hàng với thẻ thử `4242 4242 4242 4242`. Chuyển sang khóa `sk_live_...` khi chạy thật.
+>
+> Nếu chưa điền `STRIPE_SECRET_KEY`, website vẫn chạy: nút thanh toán đổi thành **Place order request** và shop liên hệ khách để thu tiền sau.
+
 ## Bước 3: Tạo ứng dụng Node.js từ GitHub
 
 1. hPanel → **Websites → Add website → Node.js Apps** (hoặc mở website nancylemflorist.com → **Node.js**).
@@ -41,6 +56,9 @@ Trong phần **Environment variables**, thêm **từng dòng** trong `deploy/hos
 | `DATA_DIR` | Thư mục lưu đơn hàng (Bước 2) |
 | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` | Hộp thư gửi email (Bước 1) |
 | `SHOP_EMAIL` | Hộp thư nhận thông báo đơn mới |
+| `STRIPE_SECRET_KEY` | Khóa bí mật Stripe (Bước 2b) |
+| `STRIPE_WEBHOOK_SECRET` | Signing secret của webhook (Bước 2b) |
+| `STRIPE_AUTOMATIC_TAX` | `false`, hoặc `true` nếu đã bật Stripe Tax |
 
 ## Bước 5: Deploy và gắn tên miền
 
@@ -50,9 +68,11 @@ Trong phần **Environment variables**, thêm **từng dòng** trong `deploy/hos
 ## Bước 6: Kiểm tra sau khi chạy
 
 - [ ] https://nancylemflorist.com/ hiển thị trang chủ có ảnh
-- [ ] https://nancylemflorist.com/api/health → `"status":"ok"`, và `DATA_DIR_writable`, `SMTP_configured`, `ADMIN_configured` đều là `true`
-- [ ] https://nancylemflorist.com/shop/midnight-garden → đặt thử một đơn
-  - Hộp thư `SHOP_EMAIL` nhận email "New order…", email khách nhận "We received your order request…"
+- [ ] https://nancylemflorist.com/api/health → `"status":"ok"`, và `DATA_DIR_writable`, `SMTP_configured`, `ADMIN_configured`, `STRIPE_configured`, `STRIPE_webhook_configured` đều là `true`
+- [ ] https://nancylemflorist.com/shop/midnight-garden → **Add to cart** → **Checkout** → thanh toán
+  - Sau khi thanh toán: trang "Order confirmed", shop nhận email "PAID order…", khách nhận "Order confirmed…"
+  - Trong Stripe Dashboard → Webhooks: sự kiện `checkout.session.completed` trả về 200
+- [ ] Footer có khối **Company Information** (NancyLem LLC, địa chỉ, email, điện thoại) và link 4 trang chính sách
 - [ ] https://nancylemflorist.com/admin → đăng nhập bằng `ADMIN_PASSWORD`, thấy đơn vừa đặt, đổi trạng thái được
 - [ ] https://nancylemflorist.com/weddings-events → gửi thử form yêu cầu báo giá
 - [ ] https://nancylemflorist.com/sitemap.xml và /robots.txt hiển thị đúng
@@ -66,11 +86,24 @@ Trong phần **Environment variables**, thêm **từng dòng** trong `deploy/hos
 
 ## Quy trình xử lý đơn hàng
 
-Website **không thu tiền trực tiếp**. Khi khách gửi form:
+1. Khách thêm hoa vào giỏ → **Checkout** → nhập thông tin giao hàng → thanh toán trên trang bảo mật của Stripe.
+2. Stripe báo thanh toán thành công → đơn chuyển sang **paid**, shop và khách nhận email.
+3. Nhân viên vào `/admin`, chuẩn bị hoa, giao → chuyển trạng thái **delivered**.
+4. Hoàn tiền: thực hiện trong Stripe Dashboard → đơn tự chuyển sang **refunded**.
 
-1. Đơn được lưu vào `DATA_DIR/orders.json`, shop nhận email, khách nhận email xác nhận.
-2. Nhân viên vào `/admin`, gọi hoặc email cho khách để xác nhận, rồi gửi **link thanh toán** (Stripe Payment Link, Square, PayPal…). Chuyển trạng thái đơn sang **confirmed**.
-3. Khách trả tiền → chuyển sang **paid** → giao hoa → **delivered**.
+Các trạng thái khác: **awaiting_payment** (khách mở trang thanh toán nhưng chưa trả, tự hủy sau 1 giờ), **new** (đơn đặt khi chưa cấu hình Stripe, cần liên hệ thu tiền).
+
+## Các trang bắt buộc cho xác minh Google Ads / Merchant
+
+| Yêu cầu | Trang |
+|---|---|
+| About Us | `/about` |
+| Contact Us (form + địa chỉ + điện thoại) | `/contact` |
+| Shipping & Delivery Policy | `/shipping-policy` |
+| Refund & Return Policy | `/refund-policy` |
+| Terms of Service | `/terms` |
+| Privacy Policy | `/privacy-policy` |
+| Thông tin pháp nhân | Footer mọi trang: *Company Information* |
 
 ## Cập nhật website
 

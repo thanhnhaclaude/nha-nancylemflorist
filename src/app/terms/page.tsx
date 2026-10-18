@@ -20,61 +20,69 @@ export default function TermsPage() {
 
       <h2>1. Orders</h2>
       <p>
-        Submitting an order form is a request, not a completed purchase. An order becomes binding only after we
-        confirm availability and you complete payment through the secure link we send. We may decline any order, for
-        example if delivery isn&rsquo;t possible to the address provided.
+        An order is placed when you complete payment on our secure checkout, and we confirm it by email. We may
+        cancel and fully refund an order if delivery isn&rsquo;t possible to the address provided, if a product is
+        unavailable, or if we suspect fraud.
       </p>
 
       <h2>2. Prices</h2>
       <p>
-        Prices are in U.S. dollars and may change without notice. The price shown when you submit your request is
-        honored once confirmed. Sales tax and any applicable fees are shown before payment. If a pricing error occurs,
-        we will contact you before charging anything.
+        Prices are in U.S. dollars and may change without notice; the price shown at checkout is the price you pay.
+        Delivery fees and any applicable sales tax are shown before you pay. If an obvious pricing error occurs, we will
+        contact you and you may cancel for a full refund.
       </p>
 
-      <h2>3. Product appearance & substitutions</h2>
+      <h2>3. Payment</h2>
+      <p>
+        Payments are processed securely by Stripe, Inc. We accept major credit and debit cards, Apple Pay and Google
+        Pay. Card details are entered on Stripe&rsquo;s encrypted payment page; {site.company.legalName} never receives
+        or stores your full card number. Charges appear on your statement under our business name.
+      </p>
+
+      <h2>4. Product appearance & substitutions</h2>
       <p>
         Photos are representative. Flowers are natural products; colors, sizes and varieties vary by season and
-        region. Substitutions are handled as described in our <Link href="/delivery-policy">Delivery & Refund Policy</Link>.
+        region. Substitutions are handled as described in our <Link href="/refund-policy">Refund & Return Policy</Link>.
       </p>
 
-      <h2>4. Delivery, cancellations & refunds</h2>
+      <h2>5. Delivery, cancellations & refunds</h2>
       <p>
-        Delivery timing, cancellations and our freshness guarantee are governed by our{" "}
-        <Link href="/delivery-policy">Delivery & Refund Policy</Link>, which is part of these terms.
+        Delivery areas, timing and fees are governed by our <Link href="/shipping-policy">Shipping & Delivery Policy</Link>.
+        Cancellations, replacements, refunds and our freshness guarantee are governed by our{" "}
+        <Link href="/refund-policy">Refund & Return Policy</Link>. Both are part of these terms.
       </p>
 
-      <h2>5. Card messages & content</h2>
+      <h2>6. Card messages & content</h2>
       <p>
         You are responsible for the content of card messages and information you submit. We may refuse to include
         messages that are unlawful, harassing or offensive.
       </p>
 
-      <h2>6. Intellectual property</h2>
+      <h2>7. Intellectual property</h2>
       <p>
         The site&rsquo;s design, text, logos and arrangements are owned by or licensed to {site.company.legalName}.
         Some photographs are used under license from their creators. You may not copy or reuse site content without
         permission.
       </p>
 
-      <h2>7. Acceptable use</h2>
+      <h2>8. Acceptable use</h2>
       <p>You agree not to misuse the site, submit false information, attempt to gain unauthorized access, or interfere with its operation.</p>
 
-      <h2>8. Disclaimer & limitation of liability</h2>
+      <h2>9. Disclaimer & limitation of liability</h2>
       <p>
         The site is provided &ldquo;as is.&rdquo; To the fullest extent permitted by law, our total liability for any
         claim relating to an order is limited to the amount you paid for that order, and we are not liable for
         indirect, incidental or consequential damages.
       </p>
 
-      <h2>9. Governing law</h2>
+      <h2>10. Governing law</h2>
       <p>
         These terms are governed by the laws of the State of {site.company.state}, without regard to conflict-of-law
         rules. Disputes will be resolved in the state or federal courts located in {site.company.state}, unless
         applicable consumer-protection law provides otherwise.
       </p>
 
-      <h2>10. Changes</h2>
+      <h2>11. Changes</h2>
       <p>We may update these terms. Changes apply to orders placed after the updated terms are posted.</p>
 
       <h2>Contact</h2>
