@@ -11,13 +11,12 @@ Trên máy bạn, thư mục `deploy/` (không đưa lên GitHub) có file `depl
 1. hPanel → **Emails** → thêm tên miền `nancylemflorist.com` (nếu chưa có) → tạo hộp thư `contact@nancylemflorist.com`.
 2. Ghi lại mật khẩu hộp thư, điền vào dòng `SMTP_PASS` trong `deploy/hostinger-env.txt`.
 
-## Bước 2: Tạo thư mục lưu đơn hàng
+## Bước 2: Thư mục lưu đơn hàng (tự động)
 
-Đơn hàng và yêu cầu liên hệ được lưu dưới dạng file JSON. Thư mục này phải nằm **ngoài** thư mục ứng dụng để không bị xóa khi deploy lại.
+Đơn hàng và yêu cầu liên hệ được lưu dạng file JSON trong thư mục `nancylemflorist-data` nằm ở thư mục home trên Hostinger (ví dụ `/home/u123456789/nancylemflorist-data`), **ngoài** thư mục ứng dụng nên không bị xóa khi deploy lại. Website tự tạo thư mục này.
 
-1. hPanel → **Files → File Manager**. Xem đường dẫn thư mục home, ví dụ `/home/u123456789/`.
-2. Tạo thư mục `nancylemflorist-data` ngay trong home.
-3. Sửa dòng `DATA_DIR` trong `deploy/hostinger-env.txt`, thay `<user>` bằng tên user thật, ví dụ `DATA_DIR=/home/u123456789/nancylemflorist-data`.
+- **Không cần** khai báo biến `DATA_DIR`. Nếu đã khai báo mà còn chữ `<user>`, hãy **xóa biến đó** đi.
+- Chỉ khai báo `DATA_DIR` nếu muốn lưu ở chỗ khác, và phải ghi đường dẫn đầy đủ, đúng.
 
 ## Bước 2b: Tạo tài khoản Stripe (cổng thanh toán)
 
@@ -53,7 +52,7 @@ Trong phần **Environment variables**, thêm **từng dòng** trong `deploy/hos
 | `NEXT_PUBLIC_SITE_URL` | `https://nancylemflorist.com`. Được ghi vào lúc build, đổi giá trị thì phải **Deploy lại** |
 | `ADMIN_PASSWORD` | Mật khẩu đăng nhập trang `/admin` |
 | `AUTH_SECRET` | Khóa ký cookie đăng nhập (giữ bí mật) |
-| `DATA_DIR` | Thư mục lưu đơn hàng (Bước 2) |
+| `DATA_DIR` | Không bắt buộc (xem Bước 2) |
 | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` | Hộp thư gửi email (Bước 1) |
 | `SHOP_EMAIL` | Hộp thư nhận thông báo đơn mới |
 | `STRIPE_SECRET_KEY` | Khóa bí mật Stripe (Bước 2b) |

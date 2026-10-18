@@ -1,6 +1,7 @@
 import "server-only";
 import { promises as fs } from "node:fs";
 import path from "node:path";
+import os from "node:os";
 import { randomBytes } from "node:crypto";
 import type { CheckoutData, InquiryData } from "./schemas";
 
@@ -54,9 +55,19 @@ export type InquiryRecord = Omit<InquiryData, "company"> & {
 type Kind = "orders" | "inquiries";
 type RecordOf<K extends Kind> = K extends "orders" ? OrderRecord : InquiryRecord;
 
-/** Runtime data folder — resolved at runtime, not traced into the build. */
-export const dataDir = () =>
-  process.env.DATA_DIR ? path.resolve(/*turbopackIgnore: true*/ process.env.DATA_DIR) : path.join(/*turbopackIgnore: true*/ process.cwd(), "data");
+/** DATA_DIR still holds the "<user>" placeholder from the env template. */
+export const dataDirIsPlaceholder = () => /[<>]/.test(process.env.DATA_DIR ?? "");
+
+/**
+ * Runtime data folder — resolved at runtime, not traced into the build.
+ * In production it defaults to ~/nancylemflorist-data so redeploys never wipe orders.
+ */
+export const dataDir = () => {
+  const custom = process.env.DATA_DIR?.trim();
+  if (custom && !dataDirIsPlaceholder()) return path.resolve(/*turbopackIgnore: true*/ custom);
+  if (process.env.NODE_ENV === "production") return path.join(/*turbopackIgnore: true*/ os.homedir(), "nancylemflorist-data");
+  return path.join(/*turbopackIgnore: true*/ process.cwd(), "data");
+};
 const fileFor = (kind: Kind) => path.join(dataDir(), `${kind}.json`);
 
 // Serialize writes per file inside this process so concurrent requests never clobber each other.

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { dataDir } from "@/lib/store";
+import { dataDir, dataDirIsPlaceholder } from "@/lib/store";
 import { smtpConfigured } from "@/lib/mailer";
 import { adminConfigured } from "@/lib/auth";
 import { paymentsEnabled } from "@/lib/payments";
@@ -22,7 +22,8 @@ export async function GET() {
     status: dataWritable ? "ok" : "degraded",
     checks: {
       DATA_DIR_writable: dataWritable,
-      DATA_DIR_custom: Boolean(process.env.DATA_DIR),
+      DATA_DIR_custom: Boolean(process.env.DATA_DIR) && !dataDirIsPlaceholder(),
+      DATA_DIR_placeholder: dataDirIsPlaceholder(),
       SMTP_configured: smtpConfigured(),
       ADMIN_configured: adminConfigured(),
       STRIPE_configured: paymentsEnabled(),

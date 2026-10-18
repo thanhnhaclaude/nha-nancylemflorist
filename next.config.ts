@@ -25,6 +25,12 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.nancylemflorist.com" }],
+        destination: "https://nancylemflorist.com/:path*",
+        permanent: true,
+      },
       { source: "/shop/all", destination: "/shop", permanent: true },
       { source: "/weddings", destination: "/weddings-events", permanent: true },
       { source: "/events", destination: "/weddings-events", permanent: true },
