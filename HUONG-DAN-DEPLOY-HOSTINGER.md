@@ -111,3 +111,16 @@ Mỗi lần push lên nhánh `main` trên GitHub, vào hPanel bấm **Redeploy**
 ## Sao lưu
 
 Tải định kỳ file `orders.json` và `inquiries.json` trong thư mục `DATA_DIR` bằng File Manager.
+
+## Tự động vá lỗ hổng thư viện
+
+Repo có sẵn:
+- `.github/dependabot.yml`: Dependabot kiểm tra thư viện mỗi ngày và tự mở pull request cập nhật.
+- `.github/workflows/ci.yml`: mỗi push/PR (và mỗi ngày) chạy typecheck, build và `npm audit`.
+- `.github/workflows/dependabot-automerge.yml`: PR của Dependabot loại **patch/minor** tự được merge vào `main` khi build và audit đạt. Bản **major** chỉ được gắn bình luận, chờ duyệt tay.
+
+Bật một lần trên GitHub (repo `thanhnhaclaude/nha-nancylemflorist` → **Settings**):
+1. **Code security** (hoặc *Security & analysis*) → bật **Dependabot alerts** và **Dependabot security updates**.
+2. **Actions → General** → *Workflow permissions*: chọn **Read and write permissions** và tick **Allow GitHub Actions to create and approve pull requests** → **Save**.
+
+Trên Hostinger: trong ứng dụng Node.js, bật **Auto deploy** (tự deploy khi nhánh `main` thay đổi) nếu có. Nếu không có tùy chọn này, sau mỗi email báo Dependabot đã merge, bấm **Redeploy**.
