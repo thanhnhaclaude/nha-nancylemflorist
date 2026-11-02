@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import InquiryForm from "@/components/InquiryForm";
 import PageHero from "@/components/PageHero";
-import { site, addressLine } from "@/lib/site";
+import { site, addressLine, ownershipStatement } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -56,7 +56,7 @@ export default function ContactPage() {
               <br />
               {site.company.address.country}
             </address>
-            <p className="mt-2 text-xs text-ink-soft">Registered business office of {site.company.legalName}. Not a walk-in storefront — all orders are placed online or by phone.</p>
+            <p className="mt-2 text-xs text-ink-soft">{ownershipStatement} Not a walk-in storefront — all orders are placed online or by phone.</p>
           </ContactItem>
         </aside>
         <div className="lg:col-span-7 lg:col-start-6">

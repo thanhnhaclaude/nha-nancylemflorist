@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import LegalPage from "@/components/LegalPage";
-import { site, addressLine } from "@/lib/site";
+import { site, addressLine, ownershipStatement } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
@@ -17,6 +17,7 @@ export default function TermsPage() {
         trade name of {site.company.legalName}, a {site.company.state} limited liability company (Filing ID{" "}
         {site.company.filingId}). By using the site you agree to these terms.
       </p>
+      <p>{ownershipStatement}</p>
 
       <h2>1. Orders</h2>
       <p>

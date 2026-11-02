@@ -46,6 +46,9 @@ export const addressFull = () =>
 
 export const addressLine = `${site.company.address.street}, ${site.company.address.city}, ${site.company.address.region} ${site.company.address.postalCode}`;
 
+/** Links the brand to the legal entity, for Stripe and ad-platform verification. */
+export const ownershipStatement = `${site.name} is owned and operated by ${site.company.legalName}. Address: ${addressLine}.`;
+
 export const nav = [
   { href: "/shop", label: "Shop" },
   { href: "/collections/love-romance", label: "Love" },
