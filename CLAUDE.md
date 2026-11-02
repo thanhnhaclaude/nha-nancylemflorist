@@ -1,6 +1,6 @@
 # nancylemflorist.com
 
-Site hoa + đặt hàng của NancyLem Florist (NancyLem LLC, Wyoming). Next.js 16, Stripe Checkout, Nodemailer, dữ liệu JSON trong `DATA_DIR`. Deploy Hostinger Node.js App.
+Site hoa + đặt hàng của NancyLem Florist (Florencia Global LLC, Wyoming). Next.js 16, Stripe Checkout, Nodemailer, dữ liệu JSON trong `DATA_DIR`. Deploy Hostinger Node.js App.
 
 Build: `npm run build` · Nhánh làm việc: `main` · Trả lời chủ shop bằng tiếng Việt.
 

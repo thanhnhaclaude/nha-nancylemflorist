@@ -21,7 +21,7 @@ export default function ContactPage() {
             Let&rsquo;s <em className="text-poppy">talk</em> flowers.
           </>
         }
-        intro="NancyLem Florist is the retail fresh-flower brand of NancyLem LLC. Questions about an order, a corporate account or something completely custom — call, email or use the form below and a real florist will reply within one business day."
+        intro="NancyLem Florist is the retail fresh-flower brand of Florencia Global LLC. Questions about an order, a corporate account or something completely custom — call, email or use the form below and a real florist will reply within one business day."
       />
       <section className="container-x grid gap-14 py-20 md:py-28 lg:grid-cols-12">
         <aside className="space-y-8 lg:col-span-4">
@@ -50,7 +50,7 @@ export default function ContactPage() {
             <address className="not-italic">
               {site.company.legalName}
               <br />
-              Attn: {site.contactPerson}
+              Attn: {site.company.soleMember}
               <br />
               {addressLine}
               <br />

@@ -20,7 +20,7 @@ Trên máy bạn, thư mục `deploy/` (không đưa lên GitHub) có file `depl
 
 ## Bước 2b: Tạo tài khoản Stripe (cổng thanh toán)
 
-1. Đăng ký tại https://dashboard.stripe.com/register bằng thông tin **NancyLem LLC** (Business type: *LLC*, EIN, địa chỉ Sheridan WY, website `https://nancylemflorist.com`, mô tả: *Online florist – fresh flower delivery*). Hoàn tất xác minh để nhận tiền.
+1. Đăng ký tại https://dashboard.stripe.com/register bằng thông tin **Florencia Global LLC** (Business type: *LLC*, EIN, địa chỉ Sheridan WY, website `https://nancylemflorist.com`, mô tả: *Online florist – fresh flower delivery*). Hoàn tất xác minh để nhận tiền.
 2. **Developers → API keys** → copy **Secret key** (`sk_live_...`) vào dòng `STRIPE_SECRET_KEY`.
 3. **Developers → Webhooks → Add endpoint**:
    - URL: `https://nancylemflorist.com/api/stripe/webhook`
@@ -71,7 +71,7 @@ Trong phần **Environment variables**, thêm **từng dòng** trong `deploy/hos
 - [ ] https://nancylemflorist.com/shop/midnight-garden → **Add to cart** → **Checkout** → thanh toán
   - Sau khi thanh toán: trang "Order confirmed", shop nhận email "PAID order…", khách nhận "Order confirmed…"
   - Trong Stripe Dashboard → Webhooks: sự kiện `checkout.session.completed` trả về 200
-- [ ] Footer có khối **Company Information** (NancyLem LLC, địa chỉ, email, điện thoại) và link 4 trang chính sách
+- [ ] Footer có khối **Company Information** (Florencia Global LLC, địa chỉ, email, điện thoại) và link 4 trang chính sách
 - [ ] https://nancylemflorist.com/admin → đăng nhập bằng `ADMIN_PASSWORD`, thấy đơn vừa đặt, đổi trạng thái được
 - [ ] https://nancylemflorist.com/weddings-events → gửi thử form yêu cầu báo giá
 - [ ] https://nancylemflorist.com/sitemap.xml và /robots.txt hiển thị đúng

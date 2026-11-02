@@ -29,7 +29,7 @@ export default function AboutPage() {
             We believe flowers should <em className="text-poppy">make noise.</em>
           </>
         }
-        intro="NancyLem Florist is the retail fresh-flower brand of NancyLem LLC. We started with a simple frustration: too many flower deliveries arrive looking like they came off a conveyor belt. So we built the opposite — a studio where every bouquet is designed by hand, with color, scale and a little bit of nerve."
+        intro="NancyLem Florist is the retail fresh-flower brand of Florencia Global LLC. We started with a simple frustration: too many flower deliveries arrive looking like they came off a conveyor belt. So we built the opposite — a studio where every bouquet is designed by hand, with color, scale and a little bit of nerve."
       />
 
       <section className="container-x grid gap-12 py-20 md:py-28 lg:grid-cols-12 lg:items-center">
@@ -98,8 +98,10 @@ export default function AboutPage() {
               ["Registered with", site.company.registeredWith],
               ["Filing ID", site.company.filingId],
               ["Formed", site.company.formed],
-              ["Contact", site.contactPerson],
-              ["Address", addressFull()],
+              ["Federal EIN", `${site.company.ein} (confirmed by ${site.company.einConfirmation})`],
+              ["Sole member (100%)", `${site.company.soleMember} (${site.company.soleMemberVietnamese})`],
+              ["Registered agent", `${site.company.registeredAgent} (filed by ${site.company.filer})`],
+              ["Principal & mailing address", addressFull()],
               ["Phone · Email", `${site.phone} · ${site.email}`],
             ].map(([k, v]) => (
               <div key={k} className="bg-card p-5">

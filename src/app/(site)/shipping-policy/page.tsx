@@ -7,7 +7,7 @@ import { site, addressFull } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Shipping & Delivery Policy",
   description:
-    "NancyLem Florist delivery areas, delivery windows, same-day cutoff, fees and how we keep flowers fresh in transit. Operated by NancyLem LLC.",
+    "NancyLem Florist delivery areas, delivery windows, same-day cutoff, fees and how we keep flowers fresh in transit. Operated by Florencia Global LLC.",
   alternates: { canonical: "/shipping-policy" },
 };
 

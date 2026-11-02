@@ -6,7 +6,7 @@ import { site, addressFull } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Return & Replacement Policy",
   description:
-    "Replacements and refunds for damaged, late or incorrect flower deliveries, our 7-day freshness guarantee, and cancellations. NancyLem Florist is operated by NancyLem LLC.",
+    "Replacements and refunds for damaged, late or incorrect flower deliveries, our 7-day freshness guarantee, and cancellations. NancyLem Florist is operated by Florencia Global LLC.",
   alternates: { canonical: "/return-policy" },
 };
 

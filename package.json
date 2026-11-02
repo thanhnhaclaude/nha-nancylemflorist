@@ -2,7 +2,7 @@
   "name": "nancylemflorist",
   "version": "1.0.0",
   "private": true,
-  "description": "NancyLem Florist — nancylemflorist.com (NancyLem LLC)",
+  "description": "NancyLem Florist — nancylemflorist.com (Florencia Global LLC)",
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
